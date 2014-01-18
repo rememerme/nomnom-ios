@@ -26,6 +26,13 @@
 		9D00E7A4188A7A57008F6804 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D00E79F188A7A57008F6804 /* UserService.m */; };
 		9D00E7A5188A7A57008F6804 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D00E7A1188A7A57008F6804 /* User.m */; };
 		9D00E7A6188A7A57008F6804 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D00E7A3188A7A57008F6804 /* Login.m */; };
+		9D00E7AC188A8AEB008F6804 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D00E7AB188A8AEB008F6804 /* FriendsViewController.m */; };
+		9D00E7AF188A8EE3008F6804 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D00E7AE188A8EE3008F6804 /* Request.m */; };
+		9D00E7B2188A8F1D008F6804 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D00E7B1188A8F1D008F6804 /* Friend.m */; };
+		9D00E7B5188A8FA8008F6804 /* FriendService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D00E7B4188A8FA8008F6804 /* FriendService.m */; };
+		9D00E7B8188A8FB3008F6804 /* RequestService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D00E7B7188A8FB3008F6804 /* RequestService.m */; };
+		9D6CC286188AF347003DEF4A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC285188AF347003DEF4A /* RootViewController.m */; };
+		9D6CC289188AFB4C003DEF4A /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC288188AFB4C003DEF4A /* GameViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +73,20 @@
 		9D00E7A1188A7A57008F6804 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		9D00E7A2188A7A57008F6804 /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
 		9D00E7A3188A7A57008F6804 /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
+		9D00E7AA188A8AEB008F6804 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
+		9D00E7AB188A8AEB008F6804 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
+		9D00E7AD188A8EE3008F6804 /* Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
+		9D00E7AE188A8EE3008F6804 /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
+		9D00E7B0188A8F1D008F6804 /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
+		9D00E7B1188A8F1D008F6804 /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
+		9D00E7B3188A8FA8008F6804 /* FriendService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendService.h; sourceTree = "<group>"; };
+		9D00E7B4188A8FA8008F6804 /* FriendService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendService.m; sourceTree = "<group>"; };
+		9D00E7B6188A8FB3008F6804 /* RequestService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestService.h; sourceTree = "<group>"; };
+		9D00E7B7188A8FB3008F6804 /* RequestService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestService.m; sourceTree = "<group>"; };
+		9D6CC284188AF347003DEF4A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		9D6CC285188AF347003DEF4A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		9D6CC287188AFB4C003DEF4A /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		9D6CC288188AFB4C003DEF4A /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +194,12 @@
 				9D00E776188A797E008F6804 /* Main.storyboard */,
 				9D00E779188A797E008F6804 /* ViewController.h */,
 				9D00E77A188A797E008F6804 /* ViewController.m */,
+				9D00E7AA188A8AEB008F6804 /* FriendsViewController.h */,
+				9D00E7AB188A8AEB008F6804 /* FriendsViewController.m */,
+				9D6CC284188AF347003DEF4A /* RootViewController.h */,
+				9D6CC285188AF347003DEF4A /* RootViewController.m */,
+				9D6CC287188AFB4C003DEF4A /* GameViewController.h */,
+				9D6CC288188AFB4C003DEF4A /* GameViewController.m */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -184,6 +211,10 @@
 				9D00E7A1188A7A57008F6804 /* User.m */,
 				9D00E7A2188A7A57008F6804 /* Login.h */,
 				9D00E7A3188A7A57008F6804 /* Login.m */,
+				9D00E7AD188A8EE3008F6804 /* Request.h */,
+				9D00E7AE188A8EE3008F6804 /* Request.m */,
+				9D00E7B0188A8F1D008F6804 /* Friend.h */,
+				9D00E7B1188A8F1D008F6804 /* Friend.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -193,6 +224,10 @@
 			children = (
 				9D00E79E188A7A57008F6804 /* UserService.h */,
 				9D00E79F188A7A57008F6804 /* UserService.m */,
+				9D00E7B3188A8FA8008F6804 /* FriendService.h */,
+				9D00E7B4188A8FA8008F6804 /* FriendService.m */,
+				9D00E7B6188A8FB3008F6804 /* RequestService.h */,
+				9D00E7B7188A8FB3008F6804 /* RequestService.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -298,9 +333,16 @@
 			files = (
 				9D00E7A5188A7A57008F6804 /* User.m in Sources */,
 				9D00E7A4188A7A57008F6804 /* UserService.m in Sources */,
+				9D6CC286188AF347003DEF4A /* RootViewController.m in Sources */,
+				9D00E7B8188A8FB3008F6804 /* RequestService.m in Sources */,
 				9D00E77B188A797E008F6804 /* ViewController.m in Sources */,
+				9D6CC289188AFB4C003DEF4A /* GameViewController.m in Sources */,
+				9D00E7B2188A8F1D008F6804 /* Friend.m in Sources */,
 				9D00E7A6188A7A57008F6804 /* Login.m in Sources */,
 				9D00E775188A797E008F6804 /* AppDelegate.m in Sources */,
+				9D00E7AF188A8EE3008F6804 /* Request.m in Sources */,
+				9D00E7B5188A8FA8008F6804 /* FriendService.m in Sources */,
+				9D00E7AC188A8AEB008F6804 /* FriendsViewController.m in Sources */,
 				9D00E771188A797E008F6804 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,6 +552,7 @@
 				9D00E795188A797E008F6804 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9D00E796188A797E008F6804 /* Build configuration list for PBXNativeTarget "NomNomTests" */ = {
 			isa = XCConfigurationList;
@@ -518,6 +561,7 @@
 				9D00E798188A797E008F6804 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

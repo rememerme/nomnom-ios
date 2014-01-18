@@ -10,45 +10,54 @@
 
 @implementation UserService
 
--(NSArray *) loginUserWithCredentials:(Login *)creds {
+-(User *) loginUserWithCredentials:(Login *)creds {
     NSString *urlString = @"http://134.53.148.103:8000/rest/v1/sessions/";
     NSLog(@"%@", urlString);
     // make request body
-    NSData *postBody = [[NSData alloc] init];
-    [postBody setValue:creds.username forKey:@"username"];
-    [postBody setValue:creds.password forKey:@"password"];
+    
+    
+    NSArray *objects = [NSArray arrayWithObjects:creds.username, creds.password,nil];
+    NSArray *keys = [NSArray arrayWithObjects:@"username", @"password",nil];
+    NSDictionary *postDict = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    NSError *requestError = nil;
+    NSData *jsonRequest = [NSJSONSerialization dataWithJSONObject:postDict options:NSJSONWritingPrettyPrinted error:&requestError];
+    
     // create request
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: urlString]];
-    [request setHTTPMethod:@"GET"];
-    [request setHTTPBody:postBody];
+    [request setHTTPMethod:@"POST"];
+    NSString* postBody = [[NSString alloc] initWithData:jsonRequest encoding:NSUTF8StringEncoding];
+    [request setHTTPBody:jsonRequest];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
     // Make the request
     NSURLResponse* response = [[NSURLResponse alloc] init];
-    NSError *requestError = nil;
+    
     NSData *adata = [NSURLConnection sendSynchronousRequest:request returningResponse: &response error: &requestError];
     
     //Handle the response
     if(adata){
-        NSLog(@"Bus Response Success");
+        NSLog(@"User Login Success");
         
         NSError *parseError = nil;
-        NSArray *resultsArray = [NSJSONSerialization JSONObjectWithData:adata options:kNilOptions error:&parseError];
-        NSMutableArray *res = [[NSMutableArray alloc] init];
-        
-        if(resultsArray){
-            for(NSDictionary *dict in resultsArray){
-                NSLog(@"Woot it worked");
-            }
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:adata options:kNilOptions error:&parseError];
+        User* user = [[User alloc] init];
+        user.username = creds.username;
+
+        if(dict){
+            user.session_id = (NSString*)[dict objectForKey:@"session_id"];
+            user.user_id = (NSString*)[dict objectForKey:@"user_id"];
+            user.date_created = (NSString*)[dict objectForKey:@"date_created"];
+            user.last_modified = (NSString*)[dict objectForKey:@"last_modified"];
         } else {
             NSLog(@"Parse error %@", requestError);
         }
         
-        return [[NSArray alloc] initWithArray:res];
+        return user;
     } else {
         NSLog(@"Request error %@", requestError);
         return nil;
     }
 }
+
 
 @end

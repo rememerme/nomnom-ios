@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "User.h"
 #import "Login.h"
+//#import <JSON/JSON.h>
 
 @interface UserService : NSObject
 
--(NSArray *) loginUserWithCredentials:(Login*)creds;
+-(User *) loginUserWithCredentials:(Login*)creds;
 
 @end

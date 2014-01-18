@@ -8,19 +8,78 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "User.h"
+#import "FriendsViewController.h"
+#import "RootViewController.h"
+#import "GameViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    ViewController *controller = [[ViewController alloc] init];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+    /*
+    // for removing login info
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"password"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"session_id"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user_id"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"date_created"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"last_modified"];    
+    */
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"] == nil &&
+            [[NSUserDefaults standardUserDefaults] objectForKey:@"session_id"] == nil)  {
+        ViewController *controller = [[ViewController alloc] init];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+        
+        self.window.rootViewController = navController;
+    }
+    else {
+        User *user = [[User alloc]init];
+        user.username = (NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+        user.user_id = (NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"];
+        user.session_id = (NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:@"session_id"];
+        user.date_created = (NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:@"date_created"];
+        user.last_modified = (NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:@"last_modified"];
+        
+        //HomeViewController *controller = [[HomeViewController alloc]initWithUser:user];
+        //UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+        // set up a local nav controller which we will reuse for each view controller
+        UINavigationController *localNavigationController;
+        
+        // create tab bar controller and array to hold the view controllers
+        _tabBarController = [[UITabBarController alloc] init];
+        
+        NSMutableArray *localControllersArray = [[NSMutableArray alloc] initWithCapacity:1];
+        
+        // setup the first view controller (Root view controller)
+        FriendsViewController *friendsController;
+        friendsController = [[FriendsViewController alloc] initWithUser:user];
+        
+        GamesViewController *gamesController = [[GamesViewController alloc]initWithUser:user];
+        
+        // create the nav controller and add the root view controller as its first view
+        localNavigationController = [[UINavigationController alloc] initWithRootViewController:gamesController];
+        localNavigationController.delegate = self;
+        
+        [localControllersArray addObject:localNavigationController];
+        
+        _tabBarController.viewControllers = localControllersArray;
+        _tabBarController.moreNavigationController.navigationBar.barStyle = UIBarStyleBlack;
+        _tabBarController.delegate = self;
+        _tabBarController.moreNavigationController.delegate = self;
+        _tabBarController.selectedIndex = 0;
+        //myViewController.tabBarController = _tabBarController;
+        
+        // add the tabBarController as a subview in the window
+        [_window addSubview:_tabBarController.view];
+        
+        // need this last line to display the window (and tab bar controller)
+        [_window makeKeyAndVisible];
+        _window.rootViewController = self.tabBarController;
+    }
     
-    self.window.rootViewController = navController;
     //[self.window makeKeyAndVisible];
-    
-    return YES;
     return YES;
 }
 							
