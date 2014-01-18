@@ -21,6 +21,11 @@
 		9D00E786188A797E008F6804 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D00E768188A797E008F6804 /* UIKit.framework */; };
 		9D00E78E188A797E008F6804 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9D00E78C188A797E008F6804 /* InfoPlist.strings */; };
 		9D00E790188A797E008F6804 /* NomNomTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D00E78F188A797E008F6804 /* NomNomTests.m */; };
+		9D00E79B188A79F4008F6804 /* Home.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D00E799188A79F4008F6804 /* Home.png */; };
+		9D00E79C188A79F4008F6804 /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D00E79A188A79F4008F6804 /* Settings.png */; };
+		9D00E7A4188A7A57008F6804 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D00E79F188A7A57008F6804 /* UserService.m */; };
+		9D00E7A5188A7A57008F6804 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D00E7A1188A7A57008F6804 /* User.m */; };
+		9D00E7A6188A7A57008F6804 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D00E7A3188A7A57008F6804 /* Login.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,14 @@
 		9D00E78B188A797E008F6804 /* NomNomTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NomNomTests-Info.plist"; sourceTree = "<group>"; };
 		9D00E78D188A797E008F6804 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9D00E78F188A797E008F6804 /* NomNomTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NomNomTests.m; sourceTree = "<group>"; };
+		9D00E799188A79F4008F6804 /* Home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Home.png; sourceTree = "<group>"; };
+		9D00E79A188A79F4008F6804 /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings.png; sourceTree = "<group>"; };
+		9D00E79E188A7A57008F6804 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
+		9D00E79F188A7A57008F6804 /* UserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserService.m; sourceTree = "<group>"; };
+		9D00E7A0188A7A57008F6804 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		9D00E7A1188A7A57008F6804 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		9D00E7A2188A7A57008F6804 /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
+		9D00E7A3188A7A57008F6804 /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,11 +125,9 @@
 		9D00E76A188A797E008F6804 /* NomNom */ = {
 			isa = PBXGroup;
 			children = (
-				9D00E773188A797E008F6804 /* AppDelegate.h */,
-				9D00E774188A797E008F6804 /* AppDelegate.m */,
-				9D00E776188A797E008F6804 /* Main.storyboard */,
-				9D00E779188A797E008F6804 /* ViewController.h */,
-				9D00E77A188A797E008F6804 /* ViewController.m */,
+				9D00E7A9188A7A6E008F6804 /* Service */,
+				9D00E7A8188A7A65008F6804 /* Model */,
+				9D00E79D188A7A32008F6804 /* Interface */,
 				9D00E77C188A797E008F6804 /* Images.xcassets */,
 				9D00E76B188A797E008F6804 /* Supporting Files */,
 			);
@@ -126,6 +137,8 @@
 		9D00E76B188A797E008F6804 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9D00E799188A79F4008F6804 /* Home.png */,
+				9D00E79A188A79F4008F6804 /* Settings.png */,
 				9D00E76C188A797E008F6804 /* NomNom-Info.plist */,
 				9D00E76D188A797E008F6804 /* InfoPlist.strings */,
 				9D00E770188A797E008F6804 /* main.m */,
@@ -150,6 +163,38 @@
 				9D00E78C188A797E008F6804 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9D00E79D188A7A32008F6804 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				9D00E773188A797E008F6804 /* AppDelegate.h */,
+				9D00E774188A797E008F6804 /* AppDelegate.m */,
+				9D00E776188A797E008F6804 /* Main.storyboard */,
+				9D00E779188A797E008F6804 /* ViewController.h */,
+				9D00E77A188A797E008F6804 /* ViewController.m */,
+			);
+			name = Interface;
+			sourceTree = "<group>";
+		};
+		9D00E7A8188A7A65008F6804 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9D00E7A0188A7A57008F6804 /* User.h */,
+				9D00E7A1188A7A57008F6804 /* User.m */,
+				9D00E7A2188A7A57008F6804 /* Login.h */,
+				9D00E7A3188A7A57008F6804 /* Login.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		9D00E7A9188A7A6E008F6804 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				9D00E79E188A7A57008F6804 /* UserService.h */,
+				9D00E79F188A7A57008F6804 /* UserService.m */,
+			);
+			name = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +273,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D00E79C188A79F4008F6804 /* Settings.png in Resources */,
+				9D00E79B188A79F4008F6804 /* Home.png in Resources */,
 				9D00E77D188A797E008F6804 /* Images.xcassets in Resources */,
 				9D00E76F188A797E008F6804 /* InfoPlist.strings in Resources */,
 				9D00E778188A797E008F6804 /* Main.storyboard in Resources */,
@@ -249,7 +296,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D00E7A5188A7A57008F6804 /* User.m in Sources */,
+				9D00E7A4188A7A57008F6804 /* UserService.m in Sources */,
 				9D00E77B188A797E008F6804 /* ViewController.m in Sources */,
+				9D00E7A6188A7A57008F6804 /* Login.m in Sources */,
 				9D00E775188A797E008F6804 /* AppDelegate.m in Sources */,
 				9D00E771188A797E008F6804 /* main.m in Sources */,
 			);
