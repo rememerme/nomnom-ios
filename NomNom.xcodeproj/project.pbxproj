@@ -33,6 +33,8 @@
 		9D00E7B8188A8FB3008F6804 /* RequestService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D00E7B7188A8FB3008F6804 /* RequestService.m */; };
 		9D6CC286188AF347003DEF4A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC285188AF347003DEF4A /* RootViewController.m */; };
 		9D6CC289188AFB4C003DEF4A /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC288188AFB4C003DEF4A /* GameViewController.m */; };
+		9D6CC28C188B0344003DEF4A /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC28B188B0344003DEF4A /* Game.m */; };
+		9D6CC28F188B050B003DEF4A /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC28E188B050B003DEF4A /* HomeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,10 @@
 		9D6CC285188AF347003DEF4A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		9D6CC287188AFB4C003DEF4A /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		9D6CC288188AFB4C003DEF4A /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		9D6CC28A188B0344003DEF4A /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		9D6CC28B188B0344003DEF4A /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		9D6CC28D188B050B003DEF4A /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		9D6CC28E188B050B003DEF4A /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +206,8 @@
 				9D6CC285188AF347003DEF4A /* RootViewController.m */,
 				9D6CC287188AFB4C003DEF4A /* GameViewController.h */,
 				9D6CC288188AFB4C003DEF4A /* GameViewController.m */,
+				9D6CC28D188B050B003DEF4A /* HomeViewController.h */,
+				9D6CC28E188B050B003DEF4A /* HomeViewController.m */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -215,6 +223,8 @@
 				9D00E7AE188A8EE3008F6804 /* Request.m */,
 				9D00E7B0188A8F1D008F6804 /* Friend.h */,
 				9D00E7B1188A8F1D008F6804 /* Friend.m */,
+				9D6CC28A188B0344003DEF4A /* Game.h */,
+				9D6CC28B188B0344003DEF4A /* Game.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -336,8 +346,10 @@
 				9D6CC286188AF347003DEF4A /* RootViewController.m in Sources */,
 				9D00E7B8188A8FB3008F6804 /* RequestService.m in Sources */,
 				9D00E77B188A797E008F6804 /* ViewController.m in Sources */,
+				9D6CC28C188B0344003DEF4A /* Game.m in Sources */,
 				9D6CC289188AFB4C003DEF4A /* GameViewController.m in Sources */,
 				9D00E7B2188A8F1D008F6804 /* Friend.m in Sources */,
+				9D6CC28F188B050B003DEF4A /* HomeViewController.m in Sources */,
 				9D00E7A6188A7A57008F6804 /* Login.m in Sources */,
 				9D00E775188A797E008F6804 /* AppDelegate.m in Sources */,
 				9D00E7AF188A8EE3008F6804 /* Request.m in Sources */,

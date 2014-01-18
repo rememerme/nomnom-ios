@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "FriendsViewController.h"
 #import "HomeViewController.h"
 #import "UserService.h"
 #import "User.h"
@@ -85,13 +86,14 @@
     UserService *us = [[UserService alloc] init];
     User *user = [us loginUserWithCredentials:creds];
     HomeViewController *home = [[HomeViewController alloc] initWithUser:user];
-    [self.navigationController setViewControllers:[NSArray arrayWithObject:home] animated:YES];
     [[NSUserDefaults standardUserDefaults] setObject:user.username forKey:@"username"];
     [[NSUserDefaults standardUserDefaults] setObject:user.user_id forKey:@"user_id"];
     [[NSUserDefaults standardUserDefaults] setObject:user.session_id forKey:@"session_id"];
     [[NSUserDefaults standardUserDefaults] setObject:user.date_created forKey:@"date_created"];
     [[NSUserDefaults standardUserDefaults] setObject:user.last_modified forKey:@"last_modified"];
     [[NSUserDefaults standardUserDefaults] setObject:creds.password forKey:@"password"];
+    [self.navigationController setViewControllers:[NSArray arrayWithObject:home] animated:YES];
+    
     
 }
 

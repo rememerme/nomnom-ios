@@ -10,7 +10,7 @@
 #import "User.h"
 #import "FriendService.h"
 
-@interface FriendsViewController : UIViewController <UITabBarControllerDelegate>
+@interface FriendsViewController : UIViewController <UITabBarControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) User *user;
 @property (nonatomic, strong) NSArray *friends;

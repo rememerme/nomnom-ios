@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "Game.h"
 
-@interface GameViewController : UIViewController
+@interface GameViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) User *user;
+@property (nonatomic, strong) NSArray* games;
 
 -(id) initWithUser:(User*)user;
 

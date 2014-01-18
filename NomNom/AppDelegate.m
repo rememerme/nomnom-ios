@@ -12,14 +12,16 @@
 #import "FriendsViewController.h"
 #import "RootViewController.h"
 #import "GameViewController.h"
+#import "HomeViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    /*
+    
     // for removing login info
+    /*
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"password"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"session_id"];
@@ -36,47 +38,23 @@
     }
     else {
         User *user = [[User alloc]init];
+        
         user.username = (NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
         user.user_id = (NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"];
         user.session_id = (NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:@"session_id"];
         user.date_created = (NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:@"date_created"];
         user.last_modified = (NSString*)[[NSUserDefaults standardUserDefaults] objectForKey:@"last_modified"];
         
-        //HomeViewController *controller = [[HomeViewController alloc]initWithUser:user];
-        //UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
-        // set up a local nav controller which we will reuse for each view controller
-        UINavigationController *localNavigationController;
-        
-        // create tab bar controller and array to hold the view controllers
-        _tabBarController = [[UITabBarController alloc] init];
-        
-        NSMutableArray *localControllersArray = [[NSMutableArray alloc] initWithCapacity:1];
-        
-        // setup the first view controller (Root view controller)
-        FriendsViewController *friendsController;
-        friendsController = [[FriendsViewController alloc] initWithUser:user];
-        
-        GamesViewController *gamesController = [[GamesViewController alloc]initWithUser:user];
-        
-        // create the nav controller and add the root view controller as its first view
-        localNavigationController = [[UINavigationController alloc] initWithRootViewController:gamesController];
-        localNavigationController.delegate = self;
-        
-        [localControllersArray addObject:localNavigationController];
-        
-        _tabBarController.viewControllers = localControllersArray;
-        _tabBarController.moreNavigationController.navigationBar.barStyle = UIBarStyleBlack;
-        _tabBarController.delegate = self;
-        _tabBarController.moreNavigationController.delegate = self;
-        _tabBarController.selectedIndex = 0;
-        //myViewController.tabBarController = _tabBarController;
-        
-        // add the tabBarController as a subview in the window
+        HomeViewController *home = [[HomeViewController alloc] initWithUser:user];
+        //UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:home];
+        //self.window.rootViewController = navController;
+        home.tabBarController = _tabBarController;
+        _window.rootViewController = home;
+
+        // need this last line to display the window (and tab bar controller)
         [_window addSubview:_tabBarController.view];
         
-        // need this last line to display the window (and tab bar controller)
         [_window makeKeyAndVisible];
-        _window.rootViewController = self.tabBarController;
     }
     
     //[self.window makeKeyAndVisible];
