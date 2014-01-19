@@ -44,10 +44,13 @@
     
     // create the nav controller and add the root view controller as its first view
     UINavigationController *friendNavigationController = [[UINavigationController alloc] initWithRootViewController:_friendController];
+    friendNavigationController.navigationController.navigationBar.translucent = NO;
     friendNavigationController.delegate = self;
     UINavigationController *gameNavigationController = [[UINavigationController alloc] initWithRootViewController:_gameController];
+    gameNavigationController.navigationController.navigationBar.translucent = NO;
     gameNavigationController.delegate = self;
     UINavigationController *requestsNavigationController = [[UINavigationController alloc] initWithRootViewController:_requestsController];
+    requestsNavigationController.navigationController.navigationBar.translucent = NO;
     requestsNavigationController.delegate = self;
     
     [localControllersArray addObject:gameNavigationController];
@@ -59,12 +62,12 @@
     
     for (UIViewController *controller in _tabBarController.viewControllers) {
         controller.title = [titles objectAtIndex: [_tabBarController.viewControllers indexOfObject: controller]];
-    } 
+    }
     _tabBarController.moreNavigationController.navigationBar.barStyle = UIBarStyleBlack;
     _tabBarController.delegate = self;
     _tabBarController.moreNavigationController.delegate = self;
     _tabBarController.selectedIndex = 0;
-    //myViewController.tabBarController = _tabBarController;
+    self.tabBarController = _tabBarController;
     
     // add the tabBarController as a subview in the window
     [self.view addSubview:_tabBarController.view];

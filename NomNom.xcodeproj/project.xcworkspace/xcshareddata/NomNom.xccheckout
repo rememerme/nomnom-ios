@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>9C8AF8D7-42A0-4EA8-8CC4-FB3210741F72</string>
+	<key>IDESourceControlProjectName</key>
+	<string>NomNom</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E7AA6F6A-76DF-4CBE-8489-77F36B21DA06</key>
+		<string>https://github.com/rememerme/nomnom-ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>NomNom.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E7AA6F6A-76DF-4CBE-8489-77F36B21DA06</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/rememerme/nomnom-ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E7AA6F6A-76DF-4CBE-8489-77F36B21DA06</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E7AA6F6A-76DF-4CBE-8489-77F36B21DA06</string>
+			<key>IDESourceControlWCCName</key>
+			<string>NomNom</string>
+		</dict>
+	</array>
+</dict>
+</plist>

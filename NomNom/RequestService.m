@@ -92,4 +92,53 @@
     }
 }
 
+-(void)removeFriendRequestWithUserID:(NSString*)user_id andSession:(NSString*)session_id {
+    NSString *urlString = [@"http://134.53.148.103:8001/rest/v1/friends/requests/received/?" stringByAppendingString:user_id];
+    urlString = [urlString stringByAppendingString:@"access_token="];
+    urlString = [urlString stringByAppendingString:session_id];
+    NSLog(@"%@", urlString);
+    
+    NSError *requestError = nil;
+    
+    // create request
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: urlString]];
+    [request setHTTPMethod:@"DELETE"];
+    
+    // Make the request
+    NSHTTPURLResponse* response = nil;
+    NSData *adata = [NSURLConnection sendSynchronousRequest:request returningResponse: &response error: &requestError];
+    
+    //Handle the response
+    if(adata && [response statusCode] == 200){
+        NSLog(@"Friend Request denied for: %@", user_id);
+    } else {
+        NSLog(@"Friend Request deny error %@, %i", requestError, [response statusCode]);
+    }
+}
+
+-(void) confimFriendRequestWithUserID:(NSString *)user_id andSession:(NSString *)session_id {
+    NSString *urlString = [@"http://134.53.148.103:8001/rest/v1/friends/requests/received/?" stringByAppendingString:user_id];
+    urlString = [urlString stringByAppendingString:@"access_token="];
+    urlString = [urlString stringByAppendingString:session_id];
+    NSLog(@"%@", urlString);
+    
+    NSError *requestError = nil;
+    
+    // create request
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: urlString]];
+    [request setHTTPMethod:@"PUT"];
+    
+    // Make the request
+    NSHTTPURLResponse* response = nil;
+    NSData *adata = [NSURLConnection sendSynchronousRequest:request returningResponse: &response error: &requestError];
+    
+    //Handle the response
+    if(adata && [response statusCode] == 200){
+        NSLog(@"Friend Request accepted for: %@", user_id);
+    } else {
+        NSLog(@"Friend Request accept error %@, %i", requestError, [response statusCode]);
+    }
+
+}
+
 @end

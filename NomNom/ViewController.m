@@ -41,6 +41,7 @@
     _uname.returnKeyType = UIReturnKeyDone;
     _uname.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     _uname.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    _uname.placeholder = @"Username";
     _uname.delegate = self;
     
     // Password field
@@ -54,6 +55,7 @@
     _password.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     _password.autocapitalizationType = UITextAutocapitalizationTypeNone;
     _password.secureTextEntry = YES;
+    _password.placeholder = @"Password";
     _password.delegate = self;
     
     // Submit button
@@ -69,6 +71,7 @@
     [self.view addSubview:_uname];
     [self.view addSubview:_password];
     [self.view addSubview:_login];
+    
 
 }
 
@@ -91,6 +94,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:user.date_created forKey:@"date_created"];
     [[NSUserDefaults standardUserDefaults] setObject:user.last_modified forKey:@"last_modified"];
     [[NSUserDefaults standardUserDefaults] setObject:creds.password forKey:@"password"];
+    self.navigationController.navigationBarHidden = YES;
     [self.navigationController setViewControllers:[NSArray arrayWithObject:home] animated:YES];
     
     

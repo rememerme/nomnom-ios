@@ -20,6 +20,7 @@
     FriendService *fs = [[FriendService alloc]init];
     _friends = [fs getFriendsOfUserID:user];
     return self;
+    
 }
 
 - (void)viewDidLoad
@@ -51,6 +52,7 @@
     //[theSearchBar becomeFirstResponder];
     
     // make nav bar
+    //UINavigationController *friendNavigationController = [[UINavigationController alloc] initWithRootViewController:self];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithCGImage:settings.CGImage scale:2.0 orientation:settings.imageOrientation]  style:UIBarButtonItemStyleBordered target:self action:@selector(setttings:)];
     
@@ -188,6 +190,7 @@
         NSString *msg = (@"Your friend request to %@ has been sent", f.username);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Request Sent" message: msg delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
+        
     }
 }
 

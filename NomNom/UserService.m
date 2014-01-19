@@ -97,7 +97,7 @@
         NSLog(@"Results: %@", retArray);
         return [[NSArray alloc] initWithArray:retArray];
     } else {
-        NSLog(@"Request error %@", requestError);
+        NSLog(@"Request error %@, %@", requestError, [response statusCode]);
         return nil;
     }
 

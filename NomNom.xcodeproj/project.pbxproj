@@ -37,6 +37,8 @@
 		9D6CC28F188B050B003DEF4A /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC28E188B050B003DEF4A /* HomeViewController.m */; };
 		9D6CC292188B551B003DEF4A /* RequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC291188B551B003DEF4A /* RequestsViewController.m */; };
 		9D6CC295188B6B4B003DEF4A /* GameRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC294188B6B4B003DEF4A /* GameRequest.m */; };
+		9D6CC298188B790A003DEF4A /* GameRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC297188B790A003DEF4A /* GameRequestViewController.m */; };
+		9D6CC29B188B8953003DEF4A /* FriendRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC29A188B8953003DEF4A /* FriendRequestViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,10 @@
 		9D6CC291188B551B003DEF4A /* RequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestsViewController.m; sourceTree = "<group>"; };
 		9D6CC293188B6B4B003DEF4A /* GameRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameRequest.h; sourceTree = "<group>"; };
 		9D6CC294188B6B4B003DEF4A /* GameRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameRequest.m; sourceTree = "<group>"; };
+		9D6CC296188B790A003DEF4A /* GameRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameRequestViewController.h; sourceTree = "<group>"; };
+		9D6CC297188B790A003DEF4A /* GameRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameRequestViewController.m; sourceTree = "<group>"; };
+		9D6CC299188B8953003DEF4A /* FriendRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRequestViewController.h; sourceTree = "<group>"; };
+		9D6CC29A188B8953003DEF4A /* FriendRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRequestViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +222,10 @@
 				9D6CC28E188B050B003DEF4A /* HomeViewController.m */,
 				9D6CC290188B551B003DEF4A /* RequestsViewController.h */,
 				9D6CC291188B551B003DEF4A /* RequestsViewController.m */,
+				9D6CC296188B790A003DEF4A /* GameRequestViewController.h */,
+				9D6CC297188B790A003DEF4A /* GameRequestViewController.m */,
+				9D6CC299188B8953003DEF4A /* FriendRequestViewController.h */,
+				9D6CC29A188B8953003DEF4A /* FriendRequestViewController.m */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -353,6 +363,8 @@
 			files = (
 				9D00E7A5188A7A57008F6804 /* User.m in Sources */,
 				9D00E7A4188A7A57008F6804 /* UserService.m in Sources */,
+				9D6CC298188B790A003DEF4A /* GameRequestViewController.m in Sources */,
+				9D6CC29B188B8953003DEF4A /* FriendRequestViewController.m in Sources */,
 				9D6CC286188AF347003DEF4A /* RootViewController.m in Sources */,
 				9D00E7B8188A8FB3008F6804 /* RequestService.m in Sources */,
 				9D00E77B188A797E008F6804 /* ViewController.m in Sources */,

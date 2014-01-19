@@ -16,5 +16,6 @@
 
 -(NSArray*)getFriendRequestsOfUserID:(User*)user;
 -(NSArray*)getGameRequestsOfUserID:(User*)user;
-
+-(void)removeFriendRequestWithUserID:(NSString*)user_id andSession:(NSString*)session_id;
+-(void)confimFriendRequestWithUserID:(NSString*)user_id andSession:(NSString*)session_id;
 @end

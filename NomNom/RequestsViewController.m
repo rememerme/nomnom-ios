@@ -14,15 +14,6 @@
 
 @implementation RequestsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 -(id) initWithUser:(User *)user {
     self = [super init];
     _user = user;
@@ -74,6 +65,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) settings:(id)selector {
+    
+}
+
+-(void) edit:(id)selector {
+    BOOL edit = self.tableView.editing ? NO : YES;
+    [self.tableView setEditing:edit];
 }
 
 -(void) refreshRequests:(id)selector {
@@ -133,6 +133,11 @@
     return cell;
 }
 
-
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    FriendRequest *fr = (FriendRequest*)[_friend_requests objectAtIndex:indexPath.row];
+    FriendRequestViewController *frvc = [[FriendRequestViewController alloc]initWithRequest:fr andUser:_user];
+    self.navigationController.navigationBarHidden = YES;
+    [self.navigationController setViewControllers:[NSArray arrayWithObject:frvc] animated:YES];
+}
 
 @end

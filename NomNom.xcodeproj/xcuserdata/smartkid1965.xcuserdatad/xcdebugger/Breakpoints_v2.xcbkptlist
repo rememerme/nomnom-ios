@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NomNom/FriendsViewController.m"
-            timestampString = "411783863.404996"
+            timestampString = "411796723.090597"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "@implementation FriendsViewController"
             landmarkType = "3">
          </BreakpointContent>
