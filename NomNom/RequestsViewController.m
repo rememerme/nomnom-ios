@@ -134,6 +134,11 @@
         FriendRequest *fr = (FriendRequest*)[_friend_requests objectAtIndex:indexPath.row];
         FriendRequestViewController *frvc = [[FriendRequestViewController alloc]initWithRequest:fr andUser:_user];
         [self.navigationController pushViewController:frvc animated:YES];
+    } else {
+        NSLog(@"Selected Game Request");
+        GameRequest *gr = (GameRequest*)[_game_requests objectAtIndex:indexPath.row];
+        GameRequestViewController *grvc = [[GameRequestViewController alloc]initWithRequest:gr andUser:_user];
+        [self.navigationController pushViewController:grvc animated:YES];
     }
 }
 

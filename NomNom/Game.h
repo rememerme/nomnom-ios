@@ -11,7 +11,7 @@
 @interface Game : NSObject
 
 @property (nonatomic, strong) NSString *game_id;
-@property (nonatomic, strong) NSString *party_id;
+@property (nonatomic, strong) NSString *leader_id;
 @property (nonatomic, strong) NSString *date_created;
 @property (nonatomic, strong) NSString *last_modified;
 @property (nonatomic, strong) NSString *current_round_id;

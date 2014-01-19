@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 #import "Game.h"
+#import "GameService.h"
+#import "CreateGameViewController.h"
 
 @interface GameViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 

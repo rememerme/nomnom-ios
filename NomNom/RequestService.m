@@ -116,7 +116,7 @@
     }
 }
 
--(void) confimFriendRequestWithUserID:(NSString *)user_id andSession:(NSString *)session_id {
+-(void) confirmFriendRequestWithUserID:(NSString *)user_id andSession:(NSString *)session_id {
     NSString *urlString = [@"http://134.53.148.103:8001/rest/v1/friends/requests/received/" stringByAppendingString:user_id];
     urlString = [urlString stringByAppendingString:@"?access_token="];
     urlString = [urlString stringByAppendingString:session_id];
@@ -141,4 +141,34 @@
 
 }
 
+-(void)confirmGameRequestWithGame:(GameRequest *)game andSession:(NSString *)session_id {
+    NSString *urlString = [@"http://134.53.148.103:8002/rest/v1/games/" stringByAppendingString:game.game_id];
+    urlString = [urlString stringByAppendingString:@"/members/?access_token="];
+    urlString = [urlString stringByAppendingString:session_id];
+    NSLog(@"%@", urlString);
+    
+    // make request body
+    NSArray *objects = [NSArray arrayWithObjects:[NSNumber numberWithInt:2], nil];
+    NSArray *keys = [NSArray arrayWithObjects:@"status", nil];
+    NSDictionary *postDict = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    NSError *requestError = nil;
+    NSData *jsonRequest = [NSJSONSerialization dataWithJSONObject:postDict options:NSJSONWritingPrettyPrinted error:&requestError];
+    
+    // create request
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: urlString]];
+    [request setHTTPMethod:@"PUT"];
+    [request setHTTPBody:jsonRequest];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+
+    // Make the request
+    NSHTTPURLResponse* response = nil;
+    NSData *adata = [NSURLConnection sendSynchronousRequest:request returningResponse: &response error: &requestError];
+    
+    //Handle the response
+    if(adata && [response statusCode] == 200){
+        NSLog(@"Friend Request accepted for: %@", game);
+    } else {
+        NSLog(@"Friend Request accept error %@, %i", requestError, [response statusCode]);
+    }
+}
 @end

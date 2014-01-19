@@ -25,8 +25,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     UIImage *settings = [UIImage imageNamed:@"Settings.png"];
-    //UIImage *home = [UIImage imageNamed:@"Home.png"];
-    //self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithCGImage:settings.CGImage scale:2.0 orientation:settings.imageOrientation]  style:UIBarButtonItemStyleBordered target:self action:@selector(settings)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createGame:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithCGImage:settings.CGImage scale:2.0 orientation:settings.imageOrientation]  style:UIBarButtonItemStyleBordered target:self action:@selector(settings:)];
     UITableView *tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] style:UITableViewStylePlain];
     tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
@@ -34,6 +33,11 @@
     tableView.dataSource = self;
     [tableView reloadData];
     
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    [refresh addTarget:self action:@selector(refreshGames:)forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refresh;
     self.tableView = tableView;
 }
 
@@ -43,13 +47,19 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) poop :(id)selector{
-    
+-(void) refreshGames :(id)selector{
+    _games = [[NSArray alloc]init];
+    GameService *gs = [[GameService alloc]init];
+    _games = [gs getGamesWithSession:_user.session_id];
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
 }
 
--(void) home {
-    
-    
+-(void) createGame :(id) selector {
+    NSLog(@"Creating Games");
+    CreateGameViewController *cgvc = [[CreateGameViewController alloc]initWithUser:_user];
+    [self.navigationController pushViewController:cgvc animated:YES];
+
 }
 
 -(void) settings :(id) selector{
@@ -78,9 +88,9 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:MyIdentifier];
     }
-    Game *game = [_games objectAtIndex:indexPath.section];
+    Game *game = [_games objectAtIndex:indexPath.row];
     //TimeZoneWrapper *timeZoneWrapper = [region.timeZoneWrappers objectAtIndex:indexPath.row];
-    cell.textLabel.text = game.party_id;
+    cell.textLabel.text = game.leader_id;
     
     return cell;
 }

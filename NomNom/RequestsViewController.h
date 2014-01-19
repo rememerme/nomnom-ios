@@ -12,6 +12,7 @@
 #import "FriendRequest.h"
 #import "GameRequest.h"
 #import "FriendRequestViewController.h"
+#import "GameRequestViewController.h"
 
 @interface RequestsViewController : UITableViewController
 

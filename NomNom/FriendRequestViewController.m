@@ -53,7 +53,7 @@
 
 -(void) accept:(id)selector {
     RequestService *rs = [[RequestService alloc]init];
-    [rs confimFriendRequestWithUserID:_request.user_id andSession:_user.session_id];
+    [rs confirmFriendRequestWithUserID:_request.user_id andSession:_user.session_id];
     NSString *msg = (@"Your friend request to %@ has been approved", _request.username);
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Request Approved" message: msg delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
