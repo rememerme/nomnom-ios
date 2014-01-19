@@ -14,6 +14,7 @@
 #import "GameService.h"
 #import "Round.h"
 #import "Game.h"
+#import "NomNomView.h"
 
 @interface NominationsViewController : UIViewController
 

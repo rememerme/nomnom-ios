@@ -49,6 +49,8 @@
 		9D3944B8188BF63000155319 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D3944B7188BF63000155319 /* QuartzCore.framework */; };
 		9D3944C1188C04BE00155319 /* PhraseCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3944C0188C04BE00155319 /* PhraseCard.m */; };
 		9D3944C4188C0CBF00155319 /* NominationCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3944C3188C0CBF00155319 /* NominationCard.m */; };
+		9D5B5C19188C13C700D5AA74 /* nom_final.json in Resources */ = {isa = PBXBuildFile; fileRef = 9D5B5C18188C13C700D5AA74 /* nom_final.json */; };
+		9D5B5C1F188C1E1500D5AA74 /* NomNomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D5B5C1E188C1E1500D5AA74 /* NomNomView.m */; };
 		9D6CC286188AF347003DEF4A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC285188AF347003DEF4A /* RootViewController.m */; };
 		9D6CC289188AFB4C003DEF4A /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC288188AFB4C003DEF4A /* GameViewController.m */; };
 		9D6CC28C188B0344003DEF4A /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC28B188B0344003DEF4A /* Game.m */; };
@@ -134,6 +136,9 @@
 		9D3944C0188C04BE00155319 /* PhraseCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhraseCard.m; sourceTree = "<group>"; };
 		9D3944C2188C0CBF00155319 /* NominationCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NominationCard.h; sourceTree = "<group>"; };
 		9D3944C3188C0CBF00155319 /* NominationCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NominationCard.m; sourceTree = "<group>"; };
+		9D5B5C18188C13C700D5AA74 /* nom_final.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nom_final.json; sourceTree = "<group>"; };
+		9D5B5C1D188C1E1500D5AA74 /* NomNomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NomNomView.h; sourceTree = "<group>"; };
+		9D5B5C1E188C1E1500D5AA74 /* NomNomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NomNomView.m; sourceTree = "<group>"; };
 		9D6CC284188AF347003DEF4A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		9D6CC285188AF347003DEF4A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		9D6CC287188AFB4C003DEF4A /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
@@ -223,6 +228,7 @@
 		9D00E76B188A797E008F6804 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9D5B5C18188C13C700D5AA74 /* nom_final.json */,
 				9D3944A3188BCF3D00155319 /* NomNom_Title2_Small.png */,
 				9D394495188BCD9900155319 /* CreateGameButton.png */,
 				9D394496188BCD9900155319 /* FriendsIcon.png */,
@@ -289,6 +295,8 @@
 				9D3944AC188BD62000155319 /* StartGameViewController.m */,
 				9D3944B1188BEF6100155319 /* JudgeViewController.h */,
 				9D3944B2188BEF6100155319 /* JudgeViewController.m */,
+				9D5B5C1D188C1E1500D5AA74 /* NomNomView.h */,
+				9D5B5C1E188C1E1500D5AA74 /* NomNomView.m */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -412,6 +420,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D39449D188BCD9900155319 /* FriendsIcon.png in Resources */,
+				9D5B5C19188C13C700D5AA74 /* nom_final.json in Resources */,
 				9D00E79C188A79F4008F6804 /* Settings.png in Resources */,
 				9D00E79B188A79F4008F6804 /* Home.png in Resources */,
 				9D3944A0188BCD9900155319 /* NomNom_Title2 (1).png in Resources */,
@@ -461,6 +470,7 @@
 				9D6CC28F188B050B003DEF4A /* HomeViewController.m in Sources */,
 				9D394494188BACF700155319 /* CreateGameViewController.m in Sources */,
 				9D3944C1188C04BE00155319 /* PhraseCard.m in Sources */,
+				9D5B5C1F188C1E1500D5AA74 /* NomNomView.m in Sources */,
 				9D6CC295188B6B4B003DEF4A /* GameRequest.m in Sources */,
 				9D00E7A6188A7A57008F6804 /* Login.m in Sources */,
 				9D00E775188A797E008F6804 /* AppDelegate.m in Sources */,

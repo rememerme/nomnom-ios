@@ -261,8 +261,10 @@
 
 }
 
--(NSArray*) getCardsWithRound:(Round*)round andSession:(User *)user {
-    NSString *urlString = [@"http://134.53.148.103:8002/rest/v1/cards/?access_token=" stringByAppendingString:user.session_id];
+-(PhraseCard*) getCardWithRound:(Round*)round andSession:(User *)user {
+    NSString *urlString = [@"http://134.53.148.103:8002/rest/v1/cards/" stringByAppendingString:round.phrase_card_id];
+    urlString = [urlString stringByAppendingString:@"?access_token=" ];
+    urlString = [urlString stringByAppendingString:user.session_id];
     NSLog(@"%@", urlString);
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: urlString]];
     [request setHTTPMethod:@"GET"];
@@ -278,15 +280,12 @@
         NSError *parseError = nil;
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:adata options:kNilOptions error:&parseError];
         NSLog(@"Current round received: %@", dict);
-        //NSMutableArray *retArray = [[NSMutableArray alloc]init];
-        //for (NSDictionary *temp in dict) {
-            PhraseCard *r = [[PhraseCard alloc]init];
-            r.phrase_card_id = (NSString*)[dict objectForKey:@"phrase_card_id"];
-            r.term = (NSString*)[dict objectForKey:@"term"];
-            r.description = (NSString*)[dict objectForKey:@"description"];
-            //[retArray addObject:r];
-        //}
-        return r;//[[NSArray alloc]initWithArray:retArray];
+        PhraseCard *r = [[PhraseCard alloc]init];
+        r.phrase_card_id = (NSString*)[dict objectForKey:@"phrase_card_id"];
+        r.term = (NSString*)[dict objectForKey:@"term"];
+        r.description = (NSString*)[dict objectForKey:@"description"];
+        return r;
+        
     } else {
         NSLog(@"Current round error %@, %i", requestError, [response statusCode]);
         return nil;
