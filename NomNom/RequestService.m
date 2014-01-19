@@ -93,8 +93,8 @@
 }
 
 -(void)removeFriendRequestWithUserID:(NSString*)user_id andSession:(NSString*)session_id {
-    NSString *urlString = [@"http://134.53.148.103:8001/rest/v1/friends/requests/received/?" stringByAppendingString:user_id];
-    urlString = [urlString stringByAppendingString:@"access_token="];
+    NSString *urlString = [@"http://134.53.148.103:8001/rest/v1/friends/requests/received/" stringByAppendingString:user_id];
+    urlString = [urlString stringByAppendingString:@"?access_token="];
     urlString = [urlString stringByAppendingString:session_id];
     NSLog(@"%@", urlString);
     
