@@ -88,5 +88,84 @@
         NSLog(@"Game Creation Error %@, %i", requestError, [response statusCode]);
     }
 }
+-(NSArray*) getGameMembersForGameID:(NSString *)game_id andSession:(User*)user {
+    NSString *urlString = [@"http://134.53.148.103:8002/rest/v1/games/" stringByAppendingString:game_id];
+    urlString = [urlString stringByAppendingString:@"/members/?access_token="];
+    urlString = [urlString stringByAppendingString:user.session_id];
+    NSLog(@"%@", urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: urlString]];
+    [request setHTTPMethod:@"GET"];
+    
+    NSError *requestError = nil;
+    // Make the request
+    NSHTTPURLResponse* response = nil;
+    NSData *adata = [NSURLConnection sendSynchronousRequest:request returningResponse: &response error: &requestError];
+    
+    //Handle the response
+    if(adata && [response statusCode] == 200){
+        NSLog(@"Friend Requests received for: %@", user.user_id);
+        NSError *parseError = nil;
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:adata options:kNilOptions error:&parseError];
+        //NSDictionary *real_dict = (NSDictionary*)[dict objectForKey:@"d"];
+        NSMutableArray *retArray = [[NSMutableArray alloc]init];
+        NSArray *keys = [dict allKeys];
+        for (NSString* key in keys) {
+            Friend *fr = [[Friend alloc]init];
+            fr.user_id = key;
+            fr.date_created = (NSString *)[dict objectForKey:key];
+            FriendService *fs = [[FriendService alloc]init];
+            Friend *u = [fs getFriendWithUserID:fr.user_id andSession:user.session_id];
+            fr.username = u.username;
+            [retArray addObject:fr];
+        }
+        
+        return [[NSArray alloc] initWithArray:retArray];
+    } else {
+        NSLog(@"Friend Request error %@, %i", requestError, [response statusCode]);
+        return nil;
+    }
+
+}
+// games/<id>/rounds/current/
+// returns {round_id, selector_id, selection_id, phrase_card_id, game_id, date_created, last_modified}
+
+-(Round*) getCurrentRoundForGameID:(NSString *)game_id andSession:(User *)user {
+    NSString *urlString = [@"http://134.53.148.103:8002/rest/v1/games/" stringByAppendingString:game_id];
+    urlString = [urlString stringByAppendingString:@"/rounds/current/?access_token="];
+    urlString = [urlString stringByAppendingString:user.session_id];
+    NSLog(@"%@", urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: urlString]];
+    [request setHTTPMethod:@"GET"];
+    
+    NSError *requestError = nil;
+    // Make the request
+    NSHTTPURLResponse* response = nil;
+    NSData *adata = [NSURLConnection sendSynchronousRequest:request returningResponse: &response error: &requestError];
+    
+    //Handle the response
+    if(adata && [response statusCode] == 200){
+        NSLog(@"Friend Requests received for: %@", user.user_id);
+        NSError *parseError = nil;
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:adata options:kNilOptions error:&parseError];
+        NSDictionary *real_dict = (NSDictionary*)[dict objectForKey:@"requests"];
+        NSMutableArray *retArray = [[NSMutableArray alloc]init];
+        NSArray *keys = [real_dict allKeys];
+        for (NSString* key in keys) {
+            Friend *fr = [[Friend alloc]init];
+            fr.user_id = key;
+            fr.date_created = (NSString *)[real_dict objectForKey:key];
+            FriendService *fs = [[FriendService alloc]init];
+            Friend *u = [fs getFriendWithUserID:fr.user_id andSession:user.session_id];
+            fr.username = u.username;
+            [retArray addObject:fr];
+        }
+        
+        return [[NSArray alloc] initWithArray:retArray];
+    } else {
+        NSLog(@"Friend Request error %@, %i", requestError, [response statusCode]);
+        return nil;
+    }
+
+}
 
 @end

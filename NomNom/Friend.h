@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) NSString* username;
 @property (nonatomic, strong) NSString* user_id;
+@property (nonatomic, strong) NSString* date_created;
 
 @end

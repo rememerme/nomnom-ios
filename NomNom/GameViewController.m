@@ -19,6 +19,17 @@
     _user = user;
     GameService *gs = [[GameService alloc]init];
     _games = [gs getGamesWithSession:_user.session_id];
+    _games_start = [[NSMutableArray alloc] init];
+    _games_nom = [[NSMutableArray alloc ] init];
+    _games_jud = [[NSMutableArray alloc] init];
+    for (Game *game in _games) {
+        if ([game.current_round_id isEqualToString: @""]) {
+            [_games_start addObject:game];
+        }
+        else  {
+            [_games_nom addObject:game];
+        }
+    }
     return self;
     
 }
@@ -69,18 +80,18 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;//[_friends count];
+    return 3;//[_friends count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Number of rows is the number of time zones in the region for the specified section.
-    return [_games count];
+    return (section == 0) ? [_games_start count] : [_games_nom count];
 }
 
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     // The header for the section is the region name -- get this from the region at the section index.
-    return @"Games";
+    return (section == 0) ? @"Ready to Start" : @"Ready to Nominate";
 }
 
 
@@ -90,11 +101,37 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:MyIdentifier];
     }
-    Game *game = [_games objectAtIndex:indexPath.row];
-    //TimeZoneWrapper *timeZoneWrapper = [region.timeZoneWrappers objectAtIndex:indexPath.row];
-    cell.textLabel.text = game.leader_id;
-    
+    if (indexPath.section == 0) {
+        if ([_games_start count] == 0) {
+            cell.textLabel.text = @"No Games";
+        } else {
+            Game *fr = [_games_start objectAtIndex:indexPath.row];
+            cell.textLabel.text = fr.game_id;
+            cell.detailTextLabel.text = fr.date_created;
+        }
+    } else {
+        if ([_games_nom count] == 0) {
+            cell.textLabel.text = @"No Games";
+        } else {
+            Game *gr = [_games_nom objectAtIndex:indexPath.row];
+            cell.textLabel.text = gr.game_id;
+        }
+    }
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        NSLog(@"Selected Start Game");
+        Game *game = (Game*)[_games_start objectAtIndex:indexPath.row];
+        StartGameViewController *sgvc = [[StartGameViewController alloc]initWithGame:game andUser:_user];
+        [self.navigationController pushViewController:sgvc animated:YES];
+    } else {
+        NSLog(@"Selected Nominate");
+        //GameRequest *gr = (GameRequest*)[_game_requests objectAtIndex:indexPath.row];
+        //GameRequestViewController *grvc = [[GameRequestViewController alloc]initWithRequest:gr andUser:_user];
+        //[self.navigationController pushViewController:grvc animated:YES];
+    }
 }
 
 @end

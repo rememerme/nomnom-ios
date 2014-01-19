@@ -63,6 +63,16 @@
     for (UIViewController *controller in _tabBarController.viewControllers) {
         controller.title = [titles objectAtIndex: [_tabBarController.viewControllers indexOfObject: controller]];
     }
+    UITabBarItem *game = [[_tabBarController.tabBar items] objectAtIndex:0];
+    UIImage *gameImg = [UIImage imageNamed:@"GamesIcon.png"];
+    game.image = [[UIImage imageNamed:@"GamesIcon.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    //[game setImage:[UIImage imageWithCGImage:gameImg.CGImage scale:3.0 orientation:gameImg.imageOrientation]];
+    UITabBarItem *friends = [[_tabBarController.tabBar items] objectAtIndex:1];
+    friends.image =[[UIImage imageNamed:@"FriendsIcon.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    //[friends setImage:[UIImage imageNamed:@"FriendsIcon.png"]];
+    UITabBarItem *requests = [[_tabBarController.tabBar items] objectAtIndex:2];
+    requests.image = [[UIImage imageNamed:@"RequestsIcon.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    //[requests setImage:[UIImage imageNamed:@"RequestsIcon.png"]];
     _tabBarController.moreNavigationController.navigationBar.barStyle = UIBarStyleBlack;
     _tabBarController.delegate = self;
     _tabBarController.moreNavigationController.delegate = self;
