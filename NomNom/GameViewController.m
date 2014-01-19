@@ -64,6 +64,17 @@
     _games = [[NSArray alloc]init];
     GameService *gs = [[GameService alloc]init];
     _games = [gs getGamesWithSession:_user.session_id];
+    _games_start = [[NSMutableArray alloc] init];
+    _games_nom = [[NSMutableArray alloc ] init];
+    _games_jud = [[NSMutableArray alloc] init];
+    for (Game *game in _games) {
+        if ([game.current_round_id isEqualToString: @""]) {
+            [_games_start addObject:game];
+        }
+        else  {
+            [_games_nom addObject:game];
+        }
+    }
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 }
@@ -85,13 +96,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Number of rows is the number of time zones in the region for the specified section.
-    return (section == 0) ? [_games_start count] : [_games_nom count];
+    return (section == 0) ? [_games_start count] : ((section == 1) ? [_games_nom count] : [_games_jud count]);
 }
 
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     // The header for the section is the region name -- get this from the region at the section index.
-    return (section == 0) ? @"Ready to Start" : @"Ready to Nominate";
+    return (section == 0) ? @"Ready to Start" : ((section == 1)? @"Ready to Nominate" : @"Ready to Judge");
 }
 
 
@@ -109,12 +120,19 @@
             cell.textLabel.text = fr.game_id;
             cell.detailTextLabel.text = fr.date_created;
         }
-    } else {
+    } else if (indexPath.section == 1){
         if ([_games_nom count] == 0) {
             cell.textLabel.text = @"No Games";
         } else {
             Game *gr = [_games_nom objectAtIndex:indexPath.row];
             cell.textLabel.text = gr.game_id;
+        }
+    } else {
+        if ([_games_nom count] == 0) {
+            cell.textLabel.text = @"No Games";
+        } else {
+            Game *hr = [_games_jud objectAtIndex:indexPath.row];
+            cell.textLabel.text = hr.game_id;
         }
     }
     return cell;
@@ -126,11 +144,13 @@
         Game *game = (Game*)[_games_start objectAtIndex:indexPath.row];
         StartGameViewController *sgvc = [[StartGameViewController alloc]initWithGame:game andUser:_user];
         [self.navigationController pushViewController:sgvc animated:YES];
-    } else {
+    } else if (indexPath.section == 1){
         NSLog(@"Selected Nominate");
         //GameRequest *gr = (GameRequest*)[_game_requests objectAtIndex:indexPath.row];
         //GameRequestViewController *grvc = [[GameRequestViewController alloc]initWithRequest:gr andUser:_user];
         //[self.navigationController pushViewController:grvc animated:YES];
+    } else {
+        NSLog(@"Selected Judging");
     }
 }
 

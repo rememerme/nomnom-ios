@@ -19,5 +19,6 @@
 -(void) createGameWithMembers:(NSArray*)members andWinningScore:(NSInteger*)score andSession:(NSString*)session_id;
 -(NSArray*) getGameMembersForGameID:(NSString*)game_id andSession:(User*)user;
 -(Round*) getCurrentRoundForGameID:(NSString*)game_id andSession:(User*)user;
+-(Round*) startGameWithGameID:(NSString*)game_id andSession:(User*)user;
 
 @end

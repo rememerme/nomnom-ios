@@ -104,19 +104,27 @@
     //Handle the response
     if(adata && [response statusCode] == 200){
         NSLog(@"Friend Requests received for: %@", user.user_id);
+        
         NSError *parseError = nil;
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:adata options:kNilOptions error:&parseError];
         //NSDictionary *real_dict = (NSDictionary*)[dict objectForKey:@"d"];
+        NSLog(@"%@", dict);
         NSMutableArray *retArray = [[NSMutableArray alloc]init];
-        NSArray *keys = [dict allKeys];
-        for (NSString* key in keys) {
-            Friend *fr = [[Friend alloc]init];
-            fr.user_id = key;
-            fr.date_created = (NSString *)[dict objectForKey:key];
-            FriendService *fs = [[FriendService alloc]init];
-            Friend *u = [fs getFriendWithUserID:fr.user_id andSession:user.session_id];
-            fr.username = u.username;
-            [retArray addObject:fr];
+        FriendService *fs = [[FriendService alloc]init];
+        for (NSDictionary* user_d in dict) {
+            User *u = [[User alloc]init];
+            //u.game_id = (NSString*)[user objectForKey:@"game_id"];
+            //u.leader_id = (NSString*)[user objectForKey:@"leader_id"];
+            //u.current_round_id = (NSString*)[user objectForKey:@"current_round_id"];
+            u.user_id = (NSString*)[user_d objectForKey:@"user_id"];
+            u.username = ((Friend*)[fs getFriendWithUserID:u.user_id andSession:user.session_id]).username;
+            u.date_created = (NSString*)[user_d objectForKey:@"date_created"];
+            u.last_modified = (NSString*)[user_d objectForKey:@"last_modified"];
+            u.status = [[user_d objectForKey:@"status"]integerValue];
+            NSString *leader = (NSString*)[user_d objectForKey:@"leader_id"];
+            u.isLeader = ([leader isEqualToString:u.user_id]) ? YES : NO;
+            
+            [retArray addObject:u];
         }
         
         return [[NSArray alloc] initWithArray:retArray];
@@ -164,6 +172,47 @@
     } else {
         NSLog(@"Friend Request error %@, %i", requestError, [response statusCode]);
         return nil;
+    }
+
+}
+
+-(Round*) startGameWithGameID:(NSString *)game_id andSession:(User *)user {
+    // games/<game_id>/rounds/ POST
+    // deck_id = 7d356eb0-80f0-11e3-9dba-b8e856407186
+    NSString *urlString = [@"http://134.53.148.103:8002/rest/v1/games/" stringByAppendingString:game_id];
+    urlString = [urlString stringByAppendingString:@"/rounds/?access_token="];
+    urlString = [urlString stringByAppendingString:user.session_id];
+    NSLog(@"%@", urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: urlString]];
+   
+    NSArray *objects = [NSArray arrayWithObjects: @"7d356eb0-80f0-11e3-9dba-b8e856407186", nil];
+    NSArray *keys = [NSArray arrayWithObjects:@"deck_id", nil];
+    NSDictionary *postDict = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    NSError *requestError = nil;
+    NSData *jsonRequest = [NSJSONSerialization dataWithJSONObject:postDict options:NSJSONWritingPrettyPrinted error:&requestError];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:jsonRequest];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSHTTPURLResponse* response = nil;
+    NSData *adata = [NSURLConnection sendSynchronousRequest:request returningResponse: &response error: &requestError];
+
+    //Handle the response
+    if(adata && [response statusCode] == 200){
+        NSLog(@"Game has been started: %@", game_id);
+        
+        NSError *parseError = nil;
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:adata options:kNilOptions error:&parseError];
+        NSDictionary *real_dict = (NSDictionary*)[dict objectForKey:@"requests"];
+        NSMutableArray *retArray = [[NSMutableArray alloc]init];
+        
+        return [[Round alloc]init];
+         
+    } else {
+        NSLog(@"Friend Request error %@, %i", requestError, [response statusCode]);
+        
+        return nil;
+        
     }
 
 }

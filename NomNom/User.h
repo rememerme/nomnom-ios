@@ -15,5 +15,6 @@
 @property (nonatomic, strong) NSString* user_id;
 @property (nonatomic, strong) NSString* date_created;
 @property (nonatomic, strong) NSString* last_modified;
-
+@property (nonatomic) int status;
+@property (nonatomic) BOOL isLeader;
 @end

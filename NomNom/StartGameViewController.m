@@ -36,7 +36,7 @@
     
     scroll.scrollEnabled = YES;
     
-    UIView *friendsView = [[UIView alloc] initWithFrame:CGRectMake(10, 170, 300, 200)];
+    UIView *friendsView = [[UIView alloc] initWithFrame:CGRectMake(10, 30, 300, 200)];
     UITableView *friendsTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 300, 200) style:UITableViewStylePlain];
     friendsTable.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     friendsTable.delegate = self;
@@ -48,10 +48,15 @@
     [scroll addSubview:friendsView];
     
     UIButton *create = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [create setFrame:CGRectMake(10, 390, 300, 50)];
+    [create setFrame:CGRectMake(10, 250, 300, 50)];
     create.backgroundColor = [UIColor greenColor];
     [create setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [create setTitle:@"Create Game" forState:UIControlStateNormal];
+    [create setTitle:@"Start Game" forState:UIControlStateNormal];
+    if ([_game.leader_id isEqualToString:_user.user_id])
+        [create setEnabled:YES];
+    else
+        [create setEnabled:NO];
+    
     [create addTarget:self action:@selector(createGame:) forControlEvents:(UIControlEvents)UIControlEventTouchDown];
     [scroll addSubview:create];
     
@@ -60,9 +65,10 @@
 }
 
 -(void) createGame:(id)selector {
+    NSLog(@"Create Game Init");
     NSArray *members = [[NSArray alloc] initWithArray:_checkedIndexPaths];
     GameService *gs = [[GameService alloc]init];
-    //[gs createGameWithMembers:members andWinningScore:[_winning_score.text integerValue] andSession:_user.session_id];
+    [gs startGameWithGameID:_game.game_id andSession:_user];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -84,7 +90,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     // The header for the section is the region name -- get this from the region at the section index.
-    return @"Friends";
+    return @"Friends Ready";
 }
 
 
@@ -93,13 +99,15 @@
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    User *friend  = [[User alloc]init];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         
-        Friend *friend = [_friends objectAtIndex:indexPath.row];
-        cell.textLabel.text = friend.username;    }
+        friend = [_friends objectAtIndex:indexPath.row];
+        cell.textLabel.text = friend.username;
+    }
     
-    if ([self.checkedIndexPaths containsObject:indexPath])
+    if (friend.status == 2)
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
@@ -109,26 +117,6 @@
     }
     
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
-    NSString *uid = ((Friend*)[_friends objectAtIndex:indexPath.row]).user_id;
-    if ([self.checkedIndexPaths containsObject:uid])
-    {
-        //[self.checkedIndexPaths removeObject:indexPath];
-        [self.checkedIndexPaths removeObject: uid];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
-    else
-    {
-        //[self.checkedIndexPaths addObject:indexPath];
-        [self.checkedIndexPaths addObject: uid];
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
 }
 
 @end
