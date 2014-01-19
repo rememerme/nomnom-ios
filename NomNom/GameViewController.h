@@ -10,11 +10,15 @@
 #import "User.h"
 #import "Game.h"
 
-@interface GameViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface GameViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) User *user;
-@property (nonatomic, strong) NSArray* games;
-
+@property (nonatomic, strong) NSArray *games;
+@property (nonatomic) UITabBarController *tabBarController;
+@property (nonatomic) UITableView *tableView;
+@property (nonatomic) UISearchDisplayController *searchController;
+@property (nonatomic, strong) NSArray *searchRes;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 -(id) initWithUser:(User*)user;
 
 @end

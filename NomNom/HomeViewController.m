@@ -40,15 +40,20 @@
     
     _gameController = [[GameViewController alloc]initWithUser:_user];
     
+    _requestsController = [[RequestsViewController alloc] initWithUser:_user];
+    
     // create the nav controller and add the root view controller as its first view
     UINavigationController *friendNavigationController = [[UINavigationController alloc] initWithRootViewController:_friendController];
     friendNavigationController.delegate = self;
     UINavigationController *gameNavigationController = [[UINavigationController alloc] initWithRootViewController:_gameController];
     gameNavigationController.delegate = self;
+    UINavigationController *requestsNavigationController = [[UINavigationController alloc] initWithRootViewController:_requestsController];
+    requestsNavigationController.delegate = self;
     
     [localControllersArray addObject:gameNavigationController];
     [localControllersArray addObject:friendNavigationController];
-    NSArray *titles = [NSArray arrayWithObjects:@"Games", @"Friends", nil];
+    [localControllersArray addObject:requestsNavigationController];
+    NSArray *titles = [NSArray arrayWithObjects:@"Games", @"Friends", @"Requests", nil];
     
     _tabBarController.viewControllers = localControllersArray;
     

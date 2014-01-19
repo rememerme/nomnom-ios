@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "User.h"
 
 @interface RequestService : NSObject
+
+-(NSArray*)getFriendRequestsOfUserID:(User*)_user;
+-(NSArray*)getGameRequestsOfUserID:(User*)_user;
 
 @end

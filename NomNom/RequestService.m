@@ -10,4 +10,12 @@
 
 @implementation RequestService
 
+-(NSArray*) getFriendRequestsOfUserID:(User *)_user {
+    return nil;
+}
+
+-(NSArray*) getGameRequestsOfUserID:(User *)_user {
+    return nil;
+}
+
 @end

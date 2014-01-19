@@ -1,5 +1,5 @@
 //
-//  FriendsViewController.h
+//  RequestsViewController.h
 //  NomNom
 //
 //  Created by Jake Gregg on 1/18/14.
@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
-#import "FriendService.h"
+#import "RequestService.h"
 
-@interface FriendsViewController : UITableViewController <UITabBarControllerDelegate, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
+@interface RequestsViewController : UITableViewController
 
 @property (nonatomic, strong) User *user;
-@property (nonatomic, strong) NSArray *friends;
+@property (nonatomic, strong) NSArray *friend_requests;
+@property (nonatomic, strong) NSArray *game_requests;
 @property (nonatomic) UITabBarController *tabBarController;
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) UISearchDisplayController *searchController;

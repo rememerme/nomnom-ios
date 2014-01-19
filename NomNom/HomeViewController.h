@@ -10,12 +10,14 @@
 #import "User.h"
 #import "GameViewController.h"
 #import "FriendsViewController.h"
+#import "RequestsViewController.h"
 
 @interface HomeViewController : UIViewController <UITabBarDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) User *user;
 @property (atomic, strong) GameViewController *gameController;
 @property (atomic, strong) FriendsViewController *friendController;
+@property (atomic, strong) RequestsViewController *requestsController;
 @property (nonatomic) UITabBarController *tabBarController;
 
 -(id)initWithUser:(User*)user;

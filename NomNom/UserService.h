@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "User.h"
 #import "Login.h"
-//#import <JSON/JSON.h>
+#import "Friend.h"
 
 @interface UserService : NSObject
 
 -(User *) loginUserWithCredentials:(Login*)creds;
-
+-(NSArray *) getUserWithUsername:(NSString *)username andSession:(NSString*)session_id;
 @end

@@ -30,12 +30,12 @@
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
     // Make the request
-    NSURLResponse* response = [[NSURLResponse alloc] init];
+    NSHTTPURLResponse* response = nil;
     
     NSData *adata = [NSURLConnection sendSynchronousRequest:request returningResponse: &response error: &requestError];
     
     //Handle the response
-    if(adata){
+    if(adata && [response statusCode]==200){
         NSLog(@"User Login Success");
         
         NSError *parseError = nil;
@@ -59,5 +59,48 @@
     }
 }
 
+-(NSArray*) getUserWithUsername:(NSString*)username andSession:(NSString *)session_id {
+    NSString *urlString = [@"http://134.53.148.103/rest/v1/users/?username=" stringByAppendingString:username];
+    urlString = [urlString stringByAppendingString:@"&access_token="];
+    urlString = [urlString stringByAppendingString:session_id];
+    NSLog(@"%@", urlString);
+    
+    // create request
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: urlString]];
+    [request setHTTPMethod:@"GET"];
+    
+    // Make the request
+    NSHTTPURLResponse* response = nil;
+    NSError *requestError = nil;
+    NSData *adata = [NSURLConnection sendSynchronousRequest:request returningResponse: &response error: &requestError];
+    
+    //Handle the response
+    if(adata && [response statusCode] == 200){
+        NSLog(@"User Query Success");
+        
+        NSError *parseError = nil;
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:adata options:kNilOptions error:&parseError];
+        NSMutableArray *retArray = [[NSMutableArray alloc]init];
+        
+        if(dict){
+            NSArray *real_dict = [dict objectForKey:@"data"];
+            for (NSDictionary *user in real_dict) {
+                Friend *temp = [[Friend alloc] init];
+                temp.username = (NSString*)[user objectForKey:@"username"];
+                temp.user_id = (NSString*)[user objectForKey:@"user_id"];
+                [retArray addObject:temp];
+            }
+        } else {
+            NSLog(@"Parse error %@", requestError);
+        }
+        
+        NSLog(@"Results: %@", retArray);
+        return [[NSArray alloc] initWithArray:retArray];
+    } else {
+        NSLog(@"Request error %@", requestError);
+        return nil;
+    }
+
+}
 
 @end

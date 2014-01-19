@@ -1,5 +1,5 @@
 //
-//  Request.h
+//  FriendRequest.h
 //  NomNom
 //
 //  Created by Jake Gregg on 1/18/14.
@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Request : NSObject
+@interface FriendRequest : NSObject
+
+
 
 @end

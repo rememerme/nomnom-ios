@@ -15,5 +15,7 @@
 
 -(NSArray*) getFriendsOfUserID:(User*)user;
 -(Friend *) getFriendWithUserID:(NSString*)user_id andSession:(NSString*)session_id;
+-(void) removeFriendWithUserID:(NSString*)user_id andSession:(NSString*)session_id;
+-(void) sendFriendRequestWithUserID:(NSString*)user_id andSession:(NSString*)session_id;
 
 @end

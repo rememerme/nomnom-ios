@@ -18,11 +18,11 @@
     
     NSError *requestError = nil;
     // Make the request
-    NSURLResponse* response = [[NSURLResponse alloc] init];
+    NSHTTPURLResponse* response = nil;
     NSData *adata = [NSURLConnection sendSynchronousRequest:request returningResponse: &response error: &requestError];
     
     //Handle the response
-    if(adata){
+    if(adata && [response statusCode]==200){
         NSLog(@"Friend Response Success");
         
         NSError *parseError = nil;
@@ -58,12 +58,12 @@
     [request setHTTPMethod:@"GET"];
     
     // Make the request
-    NSURLResponse* response = [[NSURLResponse alloc] init];
+    NSHTTPURLResponse* response = nil;
     NSError *requestError = nil;
     NSData *adata = [NSURLConnection sendSynchronousRequest:request returningResponse: &response error: &requestError];
     
     //Handle the response
-    if(adata){
+    if(adata && [response statusCode] == 200){
         NSLog(@"User Query Success");
         
         NSError *parseError = nil;
@@ -85,5 +85,60 @@
     
 }
 
+-(void) removeFriendWithUserID:(NSString *)user_id andSession:(NSString *)session_id {
+    NSString *urlString = [@"http://134.53.148.103:8001/rest/v1/friends/" stringByAppendingString:user_id];
+    urlString = [urlString stringByAppendingString:@"?access_token="];
+    urlString = [urlString stringByAppendingString:session_id];
+    NSLog(@"%@", urlString);
+    
+    // create request
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: urlString]];
+    [request setHTTPMethod:@"DELETE"];
+    
+    // Make the request
+    NSHTTPURLResponse* response = nil;
+    NSError *requestError = nil;
+    NSData *adata = [NSURLConnection sendSynchronousRequest:request returningResponse: &response error: &requestError];
+    
+    //Handle the response
+    if(adata && [response statusCode] == 200){
+        NSLog(@"Friend Removed: %@", user_id);
+        
+    } else {
+        NSLog(@"Request error %@, %i", requestError, [response statusCode]);
+    }
+    
+
+}
+
+-(void) sendFriendRequestWithUserID:(NSString *)user_id andSession:(NSString *)session_id {
+    NSString *urlString = [@"http://134.53.148.103:8001/rest/v1/friends/requests/?access_token=" stringByAppendingString:session_id];
+    NSLog(@"%@", urlString);
+    
+    // make request body
+    NSArray *objects = [NSArray arrayWithObjects:user_id, nil];
+    NSArray *keys = [NSArray arrayWithObjects:@"user_id", nil];
+    NSDictionary *postDict = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    NSError *requestError = nil;
+    NSData *jsonRequest = [NSJSONSerialization dataWithJSONObject:postDict options:NSJSONWritingPrettyPrinted error:&requestError];
+    
+    // create request
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: urlString]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:jsonRequest];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    // Make the request
+    NSHTTPURLResponse* response = nil;
+    NSData *adata = [NSURLConnection sendSynchronousRequest:request returningResponse: &response error: &requestError];
+    
+    //Handle the response
+    if(adata && [response statusCode] == 200){
+        NSLog(@"Friend Request: %@", user_id);
+        
+    } else {
+        NSLog(@"Request error %@, %i", requestError, [response statusCode]);
+    }
+}
 
 @end

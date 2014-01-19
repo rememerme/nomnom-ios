@@ -25,16 +25,16 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     UIImage *settings = [UIImage imageNamed:@"Settings.png"];
-    UIImage *home = [UIImage imageNamed:@"Home.png"];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithCGImage:settings.CGImage scale:2.0 orientation:settings.imageOrientation]  style:UIBarButtonItemStyleBordered target:self action:@selector(settings)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithCGImage:home.CGImage scale:2.0 orientation:home.imageOrientation]  style:UIBarButtonItemStyleBordered target:self action:@selector(home)];
+    //UIImage *home = [UIImage imageNamed:@"Home.png"];
+    //self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithCGImage:settings.CGImage scale:2.0 orientation:settings.imageOrientation]  style:UIBarButtonItemStyleBordered target:self action:@selector(settings)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithCGImage:settings.CGImage scale:2.0 orientation:settings.imageOrientation]  style:UIBarButtonItemStyleBordered target:self action:@selector(settings:)];
     UITableView *tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] style:UITableViewStylePlain];
     tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     tableView.delegate = self;
     tableView.dataSource = self;
     [tableView reloadData];
     
-    self.view = tableView;
+    self.tableView = tableView;
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,7 +52,7 @@
     
 }
 
--(void) settings {
+-(void) settings :(id) selector{
     
 }
 
