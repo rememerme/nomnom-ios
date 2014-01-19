@@ -47,7 +47,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
 
-    NomNomView *v = [[NomNomView alloc] initWithFrame:CGRectMake(10, 10, 300, 120)];
+    NomNomView *v = [[NomNomView alloc] initWithFrame:CGRectMake(10, 10, 300, 120) andUser:_user andGame:_game];
     v.backgroundColor = [UIColor orangeColor];
     v.layer.borderColor = [UIColor lightGrayColor].CGColor;
     v.layer.borderWidth = 0.5f;
@@ -75,13 +75,15 @@
     NSLog(@"Size of _nominations: %i", [_nominations count]);
     for (NominationCard* nom in _nominations) {
         
-        NomNomView *v = [[NomNomView alloc] initWithFrame:CGRectMake(10, 160+i*160, 300, 120)];
+        NomNomView *v = [[NomNomView alloc] initWithFrame:CGRectMake(10, 160+i*160, 300, 120) andUser:_user andGame:_game];
         v.backgroundColor = [UIColor greenColor];
         v.layer.borderColor = [UIColor lightGrayColor].CGColor;
         v.layer.borderWidth = 0.5f;
         v.term.text = nom.term;
         v.description.text = nom.description;
         [view addSubview:v];
+
+
         i++;
         NSLog(@"Made entry for %@", nom.term);
     }

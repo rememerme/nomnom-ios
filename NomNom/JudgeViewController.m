@@ -48,14 +48,14 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    NomNomView *v = [[NomNomView alloc] initWithFrame:CGRectMake(10, 10, 300, 120)];
+    NomNomView *v = [[NomNomView alloc] initWithFrame:CGRectMake(10, 10, 300, 120) andUser:_user andGame:_game];
     v.backgroundColor = [UIColor orangeColor];
     v.layer.borderColor = [UIColor lightGrayColor].CGColor;
     v.layer.borderWidth = 0.5f;
     v.term.text = _phrase_card.term;
     v.description.text = _phrase_card.description;
     
-    UIView *nominations = [[UIView alloc]initWithFrame:CGRectMake(20, 140, 280, 40*[_nominations count])];
+    UIView *nominations = [[UIView alloc]initWithFrame:CGRectMake(20, 140, 280, 40*[_nominations count])] ;
     nominations.backgroundColor = [UIColor whiteColor];
     nominations.layer.cornerRadius = 5.f;
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
@@ -73,19 +73,18 @@
 
 -(void)generateLabelsOnView:(UIView*)view {
     int i = 0;
-    NSLog(@"Size of _routes: %i", [_nominations count]);
+    NSLog(@"Size of _nominations: %i", [_nominations count]);
     for (NominationCard* nom in _nominations) {
-        UIView *subView = [[UIView alloc]initWithFrame:CGRectMake(0, i*40, 280, 40)];
-        //subView.layer.cornerRadius = 5.f;
-        subView.backgroundColor = [UIColor whiteColor];
-        subView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        subView.layer.borderWidth = 0.5f;
-        UILabel *favLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, 150, 40)];
-        favLabel.text = nom.term;
-        favLabel.accessibilityLabel = nom.description;
-        favLabel.textColor = [UIColor darkTextColor];
-        [subView addSubview:favLabel];
-        [view addSubview:subView];
+        
+        NomNomView *v = [[NomNomView alloc] initWithFrame:CGRectMake(10, 160+i*160, 300, 120) andUser:_user andGame:_game];
+        v.backgroundColor = [UIColor greenColor];
+        v.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        v.layer.borderWidth = 0.5f;
+        v.term.text = nom.term;
+        v.description.text = nom.description;
+        [view addSubview:v];
+        
+        
         i++;
         NSLog(@"Made entry for %@", nom.term);
     }

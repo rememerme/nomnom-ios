@@ -13,6 +13,7 @@
 #import "CreateGameViewController.h"
 #import "StartGameViewController.h"
 #import "NominationsViewController.h"
+#import "JudgeViewController.h"
 
 @interface GameViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 

@@ -222,7 +222,7 @@
 
 }
 
--(Nomination*) nominateWithNomination:(Nomination *)nomination andGame:(Game*)game andSession:(User *)user {
+-(NominationCard*) nominateWithNomination:(NominationCard *)nomination andGame:(Game*)game andSession:(User *)user {
     NSString *urlString = [@"http://134.53.148.103:8002/rest/v1/games/" stringByAppendingString:game.game_id];
     urlString = [urlString stringByAppendingString:@"/rounds/nominations/?access_token="];
     urlString = [urlString stringByAppendingString:user.session_id];

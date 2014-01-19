@@ -164,6 +164,9 @@
         [self.navigationController pushViewController:n animated:YES];
     } else {
         NSLog(@"Selected Judging");
+        JudgeViewController *n = [[JudgeViewController alloc]initWithUser:_user andGame:(Game*)[_games objectAtIndex:indexPath.row]];
+        
+        [self.navigationController pushViewController:n animated:YES];
     }
 }
 

@@ -10,7 +10,7 @@
 
 @implementation NomNomView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame andUser:(User*)user andGame:(Game*)game
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -24,12 +24,38 @@
         _description.textColor = [UIColor darkTextColor];
         _description.backgroundColor = [UIColor clearColor];
         _description.numberOfLines = 2;
-        
         [self addSubview:_description];
+        UITapGestureRecognizer* gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userTappedOnLink:)];
+        // if labelView is not set userInteractionEnabled, you must do so
+        [self setUserInteractionEnabled:YES];
+        [self addGestureRecognizer:gesture];
     }
     return self;
 }
 
+-(void) userTappedOnLink:(id)selector {
+    NSString *msg = @"Your friend request to %@ has been approved";
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Request Approved" message: msg delegate: self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        //Code for OK button
+    }
+    if (buttonIndex == 1)
+    {
+        //Code for download button
+        GameService *gs = [[GameService alloc]init];
+        NominationCard *nc = [[NominationCard alloc]init];
+        nc.nomination_card_id = self.nomination_card_id;
+        nc.term = self.term.text;
+        nc.description = self.description.text;
+        Nomination *n = [gs nominateWithNomination:nc andGame:_game andSession:_user];
+    }
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
