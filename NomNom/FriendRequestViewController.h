@@ -10,13 +10,11 @@
 #import "RequestService.h"
 #import "FriendRequest.h"
 #import "User.h"
-#import "HomeViewController.h"
 
 @interface FriendRequestViewController : UIViewController
 
 @property (nonatomic, strong) FriendRequest *request;
 @property (nonatomic, strong) User *user;
-
 -(id) initWithRequest:(FriendRequest*)request andUser:(User*)user;
 
 @end

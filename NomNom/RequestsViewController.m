@@ -36,15 +36,13 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    UIImage *settings = [UIImage imageNamed:@"Settings.png"];
+    UIImage *settingsImg = [UIImage imageNamed:@"Settings.png"];
     //UIImage *home = [UIImage imageNamed:@"Home.png"];
     
     //SearchBar
     //[theSearchBar becomeFirstResponder];
     
-    // make nav bar
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit:)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithCGImage:settings.CGImage scale:2.0 orientation:settings.imageOrientation]  style:UIBarButtonItemStyleBordered target:self action:@selector(setttings:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithCGImage:settingsImg.CGImage scale:2.0 orientation:settingsImg.imageOrientation]  style:UIBarButtonItemStyleBordered target:self action:@selector(setttings:)];
     
     
     self.tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] style:UITableViewStylePlain];
@@ -71,12 +69,9 @@
     
 }
 
--(void) edit:(id)selector {
-    BOOL edit = self.tableView.editing ? NO : YES;
-    [self.tableView setEditing:edit];
-}
-
 -(void) refreshRequests:(id)selector {
+    _friend_requests = [[NSArray alloc] init];
+    _game_requests = [[NSArray alloc] init];
     RequestService *rs = [[RequestService alloc]init];
     _friend_requests = [rs getFriendRequestsOfUserID:_user];
     _game_requests = [rs getGameRequestsOfUserID:_user];
@@ -133,11 +128,13 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    FriendRequest *fr = (FriendRequest*)[_friend_requests objectAtIndex:indexPath.row];
-    FriendRequestViewController *frvc = [[FriendRequestViewController alloc]initWithRequest:fr andUser:_user];
-    self.navigationController.navigationBarHidden = YES;
-    [self.navigationController setViewControllers:[NSArray arrayWithObject:frvc] animated:YES];
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        NSLog(@"Selected Friend Request");
+        FriendRequest *fr = (FriendRequest*)[_friend_requests objectAtIndex:indexPath.row];
+        FriendRequestViewController *frvc = [[FriendRequestViewController alloc]initWithRequest:fr andUser:_user];
+        [self.navigationController pushViewController:frvc animated:YES];
+    }
 }
 
 @end

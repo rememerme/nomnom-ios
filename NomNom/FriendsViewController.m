@@ -88,6 +88,7 @@
 }
 
 -(void) refreshFriends:(id)selector {
+    _friends = [[NSArray alloc] init];
     FriendService *fs = [[FriendService alloc]init];
     _friends = [fs getFriendsOfUserID:_user];
     [self.tableView reloadData];

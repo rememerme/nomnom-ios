@@ -31,11 +31,11 @@
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:adata options:kNilOptions error:&parseError];
         NSDictionary *real_dict = (NSDictionary*)[dict objectForKey:@"requests"];
         NSMutableArray *retArray = [[NSMutableArray alloc]init];
-        for (NSDictionary *ret in real_dict) {
-            NSLog(@"%@", ret);
+        NSArray *keys = [real_dict allKeys];
+        for (NSString* key in keys) {
             FriendRequest *fr = [[FriendRequest alloc]init];
-            fr.user_id = (NSString *)[ret objectForKey:@"user_id"];
-            fr.date_created = (NSString *)[ret objectForKey:@"date_created"];
+            fr.user_id = key;
+            fr.date_created = (NSString *)[real_dict objectForKey:key];
             FriendService *fs = [[FriendService alloc]init];
             Friend *u = [fs getFriendWithUserID:fr.user_id andSession:user.session_id];
             fr.username = u.username;
@@ -117,8 +117,8 @@
 }
 
 -(void) confimFriendRequestWithUserID:(NSString *)user_id andSession:(NSString *)session_id {
-    NSString *urlString = [@"http://134.53.148.103:8001/rest/v1/friends/requests/received/?" stringByAppendingString:user_id];
-    urlString = [urlString stringByAppendingString:@"access_token="];
+    NSString *urlString = [@"http://134.53.148.103:8001/rest/v1/friends/requests/received/" stringByAppendingString:user_id];
+    urlString = [urlString stringByAppendingString:@"?access_token="];
     urlString = [urlString stringByAppendingString:session_id];
     NSLog(@"%@", urlString);
     
