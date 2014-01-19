@@ -17,6 +17,8 @@
 -(id) initWithUser:(User *)user {
     self = [super init];
     _user = user;
+    GameService *gs = [[GameService alloc]init];
+    _games = [gs getGamesWithSession:_user.session_id];
     return self;
     
 }
