@@ -47,7 +47,7 @@
         
         return [[NSArray alloc] initWithArray:retArray];
     } else {
-        NSLog(@"Request error %@", requestError);
+        NSLog(@"Request error %@, %i", requestError, [response statusCode]);
         return nil;
     }
 }
@@ -152,25 +152,23 @@
     
     //Handle the response
     if(adata && [response statusCode] == 200){
-        NSLog(@"Friend Requests received for: %@", user.user_id);
+        
         NSError *parseError = nil;
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:adata options:kNilOptions error:&parseError];
-        NSDictionary *real_dict = (NSDictionary*)[dict objectForKey:@"requests"];
-        NSMutableArray *retArray = [[NSMutableArray alloc]init];
-        NSArray *keys = [real_dict allKeys];
-        for (NSString* key in keys) {
-            Friend *fr = [[Friend alloc]init];
-            fr.user_id = key;
-            fr.date_created = (NSString *)[real_dict objectForKey:key];
-            FriendService *fs = [[FriendService alloc]init];
-            Friend *u = [fs getFriendWithUserID:fr.user_id andSession:user.session_id];
-            fr.username = u.username;
-            [retArray addObject:fr];
-        }
+        NSLog(@"Current round received: %@", dict);
+        //NSDictionary *real_dict = (NSDictionary*)[dict objectForKey:@"requests"];
+        Round *r = [[Round alloc]init];
+        r.selector_id = (NSString*)[dict objectForKey:@"selector_id"];
+        r.selection_id = (NSString*)[dict objectForKey:@"selection_id"];
+        r.phrase_card_id = (NSString*)[dict objectForKey:@"phrase_card_id"];
+        r.last_modified = (NSString*)[dict objectForKey:@"last_modified"];
+        r.date_created = (NSString*)[dict objectForKey:@"date_created"];
+        r.round_id = (NSString*)[dict objectForKey:@"round_id"];
+        r.game_id = (NSString*)[dict objectForKey:@"game_id"];
         
-        return [[NSArray alloc] initWithArray:retArray];
+        return r;
     } else {
-        NSLog(@"Friend Request error %@, %i", requestError, [response statusCode]);
+        NSLog(@"Current round error %@, %i", requestError, [response statusCode]);
         return nil;
     }
 

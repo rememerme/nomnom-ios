@@ -26,8 +26,14 @@
         if ([game.current_round_id isEqualToString: @""]) {
             [_games_start addObject:game];
         }
-        else  {
-            [_games_nom addObject:game];
+        else {
+            Round *curr = [gs getCurrentRoundForGameID:game.game_id andSession:_user];
+            if ([curr.selector_id isEqualToString:_user.user_id]) {
+                [_games_jud addObject:game];
+            } else {
+                [_games_nom addObject:game];
+            }
+            
         }
     }
     return self;
@@ -71,8 +77,14 @@
         if ([game.current_round_id isEqualToString: @""]) {
             [_games_start addObject:game];
         }
-        else  {
-            [_games_nom addObject:game];
+        else {
+            Round *curr = [gs getCurrentRoundForGameID:game.game_id andSession:_user];
+            if ([curr.selector_id isEqualToString:_user.user_id]) {
+                [_games_jud addObject:game];
+            } else {
+                [_games_nom addObject:game];
+            }
+            
         }
     }
     [self.tableView reloadData];
@@ -128,7 +140,7 @@
             cell.textLabel.text = gr.game_id;
         }
     } else {
-        if ([_games_nom count] == 0) {
+        if ([_games_jud count] == 0) {
             cell.textLabel.text = @"No Games";
         } else {
             Game *hr = [_games_jud objectAtIndex:indexPath.row];

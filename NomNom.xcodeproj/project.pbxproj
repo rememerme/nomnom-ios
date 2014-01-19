@@ -45,6 +45,7 @@
 		9D3944AA188BD57300155319 /* NominationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3944A9188BD57300155319 /* NominationsViewController.m */; };
 		9D3944AD188BD62000155319 /* StartGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3944AC188BD62000155319 /* StartGameViewController.m */; };
 		9D3944B0188BDD6C00155319 /* Round.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3944AF188BDD6C00155319 /* Round.m */; };
+		9D3944B3188BEF6100155319 /* JudgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3944B2188BEF6100155319 /* JudgeViewController.m */; };
 		9D6CC286188AF347003DEF4A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC285188AF347003DEF4A /* RootViewController.m */; };
 		9D6CC289188AFB4C003DEF4A /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC288188AFB4C003DEF4A /* GameViewController.m */; };
 		9D6CC28C188B0344003DEF4A /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC28B188B0344003DEF4A /* Game.m */; };
@@ -123,6 +124,8 @@
 		9D3944AC188BD62000155319 /* StartGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartGameViewController.m; sourceTree = "<group>"; };
 		9D3944AE188BDD6C00155319 /* Round.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Round.h; sourceTree = "<group>"; };
 		9D3944AF188BDD6C00155319 /* Round.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Round.m; sourceTree = "<group>"; };
+		9D3944B1188BEF6100155319 /* JudgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JudgeViewController.h; sourceTree = "<group>"; };
+		9D3944B2188BEF6100155319 /* JudgeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JudgeViewController.m; sourceTree = "<group>"; };
 		9D6CC284188AF347003DEF4A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		9D6CC285188AF347003DEF4A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		9D6CC287188AFB4C003DEF4A /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
@@ -274,6 +277,8 @@
 				9D3944A9188BD57300155319 /* NominationsViewController.m */,
 				9D3944AB188BD62000155319 /* StartGameViewController.h */,
 				9D3944AC188BD62000155319 /* StartGameViewController.m */,
+				9D3944B1188BEF6100155319 /* JudgeViewController.h */,
+				9D3944B2188BEF6100155319 /* JudgeViewController.m */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -433,6 +438,7 @@
 				9D00E7B8188A8FB3008F6804 /* RequestService.m in Sources */,
 				9D00E77B188A797E008F6804 /* ViewController.m in Sources */,
 				9D394491188BA9BE00155319 /* GameService.m in Sources */,
+				9D3944B3188BEF6100155319 /* JudgeViewController.m in Sources */,
 				9D6CC28C188B0344003DEF4A /* Game.m in Sources */,
 				9D6CC289188AFB4C003DEF4A /* GameViewController.m in Sources */,
 				9D3944B0188BDD6C00155319 /* Round.m in Sources */,
