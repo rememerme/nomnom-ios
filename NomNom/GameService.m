@@ -52,4 +52,41 @@
     }
 }
 
+-(void) createGameWithMembers:(NSArray *)members andWinningScore:(NSInteger *)score andSession:(NSString *)session_id {
+    NSString *urlString = [@"http://134.53.148.103:8002/rest/v1/games/?access_token=" stringByAppendingString:session_id];
+    NSLog(@"%@", urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: urlString]];
+    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    // make request body
+    for (NSString* str in members) {
+        NSString *ns = [NSString stringWithFormat:@"\"%@\"", str];
+        [arr addObject:ns];
+    }
+    members = [[NSArray alloc] initWithArray:arr];
+    NSString* members_str = [members componentsJoinedByString:@", "];
+    members_str = [@"[" stringByAppendingString:members_str];
+    members_str = [members_str stringByAppendingString:@"]"];
+    NSLog(@"Member str: %@", members_str);
+    NSArray *objects = [NSArray arrayWithObjects: members_str,[NSNumber numberWithInt:score], nil];
+    NSArray *keys = [NSArray arrayWithObjects:@"game_members",@"winning_score", nil];
+    NSDictionary *postDict = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    NSError *requestError = nil;
+    NSData *jsonRequest = [NSJSONSerialization dataWithJSONObject:postDict options:NSJSONWritingPrettyPrinted error:&requestError];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:jsonRequest];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    // Make the request
+    NSHTTPURLResponse* response = nil;
+    NSData *adata = [NSURLConnection sendSynchronousRequest:request returningResponse: &response error: &requestError];
+    
+    //Handle the response
+    if(adata && [response statusCode]==200){
+        NSLog(@"Game Created");
+        
+    } else {
+        NSLog(@"Game Creation Error %@, %i", requestError, [response statusCode]);
+    }
+}
+
 @end

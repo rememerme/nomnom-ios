@@ -12,6 +12,6 @@
 @interface GameService : NSObject
 
 -(NSArray*) getGamesWithSession:(NSString*)session_id;
--(void) createGame;
+-(void) createGameWithMembers:(NSArray*)members andWinningScore:(NSInteger*)score andSession:(NSString*)session_id;
 
 @end

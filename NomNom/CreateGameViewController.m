@@ -19,6 +19,7 @@
     _user = user;
     FriendService *fs = [[FriendService alloc]init];
     _friends = [fs getFriendsOfUserID:_user];
+    _checkedIndexPaths = [[NSMutableArray alloc] init];
     return self;
 }
 
@@ -34,43 +35,54 @@
     
     scroll.scrollEnabled = YES;
     
-    UITextField *game_name = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
-    game_name.backgroundColor = [UIColor lightGrayColor];
-    game_name.textColor = [UIColor darkGrayColor];
-    game_name.font = [UIFont systemFontOfSize:14.0f];
-    game_name.borderStyle = UITextBorderStyleRoundedRect;
-    game_name.clearButtonMode = UITextFieldViewModeWhileEditing;
-    game_name.returnKeyType = UIReturnKeyDone;
-    game_name.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    game_name.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    game_name.placeholder = @"Game Title";
-    game_name.enabled = NO;
-    game_name.delegate = self;
+    _game_name = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
+    _game_name.backgroundColor = [UIColor lightGrayColor];
+    _game_name.textColor = [UIColor darkGrayColor];
+    _game_name.font = [UIFont systemFontOfSize:14.0f];
+    _game_name.borderStyle = UITextBorderStyleRoundedRect;
+    _game_name.clearButtonMode = UITextFieldViewModeWhileEditing;
+    _game_name.returnKeyType = UIReturnKeyDone;
+    _game_name.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    _game_name.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    _game_name.placeholder = @"Game Title";
+    _game_name.enabled = NO;
+    _game_name.delegate = self;
     
     UIView *gameNameView = [[UIView alloc] initWithFrame:CGRectMake(10, 20, 300, 50)];
     gameNameView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     gameNameView.layer.borderWidth = 2.f;
     
-    [gameNameView addSubview:game_name];
+    [gameNameView addSubview:_game_name];
     [scroll addSubview:gameNameView];
     
-    UITextField *winning_score = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
-    winning_score.backgroundColor = [UIColor whiteColor];
-    winning_score.textColor = [UIColor blackColor];
-    winning_score.font = [UIFont systemFontOfSize:14.0f];
-    winning_score.borderStyle = UITextBorderStyleRoundedRect;
-    winning_score.clearButtonMode = UITextFieldViewModeWhileEditing;
-    winning_score.returnKeyType = UIReturnKeyDone;
-    winning_score.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    winning_score.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    winning_score.placeholder = @"Winning Score";
-    winning_score.delegate = self;
+    _winning_score = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 300, 50)];
+    _winning_score.backgroundColor = [UIColor whiteColor];
+    _winning_score.textColor = [UIColor blackColor];
+    _winning_score.font = [UIFont systemFontOfSize:14.0f];
+    _winning_score.borderStyle = UITextBorderStyleRoundedRect;
+    _winning_score.clearButtonMode = UITextFieldViewModeWhileEditing;
+    _winning_score.keyboardType = UIKeyboardTypeDecimalPad;
+    _winning_score.returnKeyType = UIReturnKeyDefault;
+    _winning_score.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    _winning_score.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    _winning_score.placeholder = @"Winning Score";
+    UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+    numberToolbar.barStyle = UIBarStyleBlackTranslucent;
+    numberToolbar.items = [NSArray arrayWithObjects:
+                           [[UIBarButtonItem alloc]initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelNumberPad)],
+                           [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                           [[UIBarButtonItem alloc]initWithTitle:@"Apply" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithNumberPad)],
+                           nil];
+    [numberToolbar sizeToFit];
+    _winning_score.inputAccessoryView = numberToolbar;
+    
+    _winning_score.delegate = self;
     
     UIView *winningView = [[UIView alloc] initWithFrame:CGRectMake(10, 90, 300, 50)];
     winningView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     winningView.layer.borderWidth = 2.f;
     
-    [winningView addSubview:winning_score];
+    [winningView addSubview:_winning_score];
     [scroll addSubview:winningView];
     
     UIView *friendsView = [[UIView alloc] initWithFrame:CGRectMake(10, 170, 300, 200)];
@@ -97,7 +109,9 @@
 }
 
 -(void) createGame:(id)selector {
-    
+    NSArray *members = [[NSArray alloc] initWithArray:_checkedIndexPaths];
+    GameService *gs = [[GameService alloc]init];
+    [gs createGameWithMembers:members andWinningScore:[_winning_score.text integerValue] andSession:_user.session_id];
 }
 
 - (void)didReceiveMemoryWarning
@@ -122,18 +136,57 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *MyIdentifier = @"MyReuseIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:MyIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        
+        Friend *friend = [_friends objectAtIndex:indexPath.row];
+        cell.textLabel.text = friend.username;    }
+    
+    if ([self.checkedIndexPaths containsObject:indexPath])
+    {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
-    Friend *friend = [_friends objectAtIndex:indexPath.row];
-    //TimeZoneWrapper *timeZoneWrapper = [region.timeZoneWrappers objectAtIndex:indexPath.row];
-    cell.textLabel.text = friend.username;
+    else
+    {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    NSString *uid = ((Friend*)[_friends objectAtIndex:indexPath.row]).user_id;
+    if ([self.checkedIndexPaths containsObject:uid])
+    {
+        //[self.checkedIndexPaths removeObject:indexPath];
+        [self.checkedIndexPaths removeObject: uid];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    else
+    {
+        //[self.checkedIndexPaths addObject:indexPath];
+        [self.checkedIndexPaths addObject: uid];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+}
+
+-(void)cancelNumberPad{
+    [_winning_score resignFirstResponder];
+    _winning_score.text = @"";
+}
+
+-(void)doneWithNumberPad{
+    NSString *numberFromTheKeyboard = _winning_score.text;
+    [_winning_score resignFirstResponder];
+}
 
 @end
