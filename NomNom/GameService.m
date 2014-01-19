@@ -176,14 +176,14 @@
 
 -(Round*) startGameWithGameID:(NSString *)game_id andSession:(User *)user {
     // games/<game_id>/rounds/ POST
-    // deck_id = 7d356eb0-80f0-11e3-9dba-b8e856407186
+    // deck_id = 13713f98-810b-11e3-8eca-fa163e50388f
     NSString *urlString = [@"http://134.53.148.103:8002/rest/v1/games/" stringByAppendingString:game_id];
     urlString = [urlString stringByAppendingString:@"/rounds/?access_token="];
     urlString = [urlString stringByAppendingString:user.session_id];
     NSLog(@"%@", urlString);
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: urlString]];
    
-    NSArray *objects = [NSArray arrayWithObjects: @"7d356eb0-80f0-11e3-9dba-b8e856407186", nil];
+    NSArray *objects = [NSArray arrayWithObjects: @"13713f98-810b-11e3-8eca-fa163e50388f", nil];
     NSArray *keys = [NSArray arrayWithObjects:@"deck_id", nil];
     NSDictionary *postDict = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     NSError *requestError = nil;
@@ -203,8 +203,15 @@
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:adata options:kNilOptions error:&parseError];
         NSDictionary *real_dict = (NSDictionary*)[dict objectForKey:@"requests"];
         NSMutableArray *retArray = [[NSMutableArray alloc]init];
-        
-        return [[Round alloc]init];
+        Round *r = [[Round alloc]init];
+        r.selector_id = (NSString*)[dict objectForKey:@"selector_id"];
+        r.selection_id = (NSString*)[dict objectForKey:@"selection_id"];
+        r.phrase_card_id = (NSString*)[dict objectForKey:@"phrase_card_id"];
+        r.last_modified = (NSString*)[dict objectForKey:@"last_modified"];
+        r.date_created = (NSString*)[dict objectForKey:@"date_created"];
+        r.round_id = (NSString*)[dict objectForKey:@"round_id"];
+        r.game_id = (NSString*)[dict objectForKey:@"game_id"];
+        return r;
          
     } else {
         NSLog(@"Friend Request error %@, %i", requestError, [response statusCode]);
@@ -213,6 +220,77 @@
         
     }
 
+}
+
+-(Nomination*) nominateWithNomination:(Nomination *)nomination andGame:(Game*)game andSession:(User *)user {
+    NSString *urlString = [@"http://134.53.148.103:8002/rest/v1/games/" stringByAppendingString:game.game_id];
+    urlString = [urlString stringByAppendingString:@"/rounds/nominations/?access_token="];
+    urlString = [urlString stringByAppendingString:user.session_id];
+    NSLog(@"%@", urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: urlString]];
+    
+    NSArray *objects = [NSArray arrayWithObjects: game.game_id, nomination.nomination_card_id, nil];
+    NSArray *keys = [NSArray arrayWithObjects:@"game_id",@"nomination_card_id", nil];
+    NSDictionary *postDict = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    NSError *requestError = nil;
+    NSData *jsonRequest = [NSJSONSerialization dataWithJSONObject:postDict options:NSJSONWritingPrettyPrinted error:&requestError];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:jsonRequest];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSHTTPURLResponse* response = nil;
+    NSData *adata = [NSURLConnection sendSynchronousRequest:request returningResponse: &response error: &requestError];
+    
+    //Handle the response
+    if(adata && [response statusCode] == 200){
+        NSLog(@"Game has been started: %@", nomination);
+        
+        NSError *parseError = nil;
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:adata options:kNilOptions error:&parseError];
+        NSDictionary *real_dict = (NSDictionary*)[dict objectForKey:@"requests"];
+        NSMutableArray *retArray = [[NSMutableArray alloc]init];
+        
+        return nomination;
+        
+    } else {
+        NSLog(@"Nomination Request error %@, %i", requestError, [response statusCode]);
+        
+        return nil;
+        
+    }
+
+}
+
+-(NSArray*) getCardsWithRound:(Round*)round andSession:(User *)user {
+    NSString *urlString = [@"http://134.53.148.103:8002/rest/v1/cards/?access_token=" stringByAppendingString:user.session_id];
+    NSLog(@"%@", urlString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: urlString]];
+    [request setHTTPMethod:@"GET"];
+    
+    NSError *requestError = nil;
+    // Make the request
+    NSHTTPURLResponse* response = nil;
+    NSData *adata = [NSURLConnection sendSynchronousRequest:request returningResponse: &response error: &requestError];
+    
+    //Handle the response
+    if(adata && [response statusCode] == 200){
+        
+        NSError *parseError = nil;
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:adata options:kNilOptions error:&parseError];
+        NSLog(@"Current round received: %@", dict);
+        //NSMutableArray *retArray = [[NSMutableArray alloc]init];
+        //for (NSDictionary *temp in dict) {
+            PhraseCard *r = [[PhraseCard alloc]init];
+            r.phrase_card_id = (NSString*)[dict objectForKey:@"phrase_card_id"];
+            r.term = (NSString*)[dict objectForKey:@"term"];
+            r.description = (NSString*)[dict objectForKey:@"description"];
+            //[retArray addObject:r];
+        //}
+        return r;//[[NSArray alloc]initWithArray:retArray];
+    } else {
+        NSLog(@"Current round error %@, %i", requestError, [response statusCode]);
+        return nil;
+    }
 }
 
 @end

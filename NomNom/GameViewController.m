@@ -7,6 +7,7 @@
 //
 
 #import "GameViewController.h"
+#import "ViewController.h"
 
 @interface GameViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -158,9 +159,9 @@
         [self.navigationController pushViewController:sgvc animated:YES];
     } else if (indexPath.section == 1){
         NSLog(@"Selected Nominate");
-        //GameRequest *gr = (GameRequest*)[_game_requests objectAtIndex:indexPath.row];
-        //GameRequestViewController *grvc = [[GameRequestViewController alloc]initWithRequest:gr andUser:_user];
-        //[self.navigationController pushViewController:grvc animated:YES];
+        NominationsViewController *n = [[NominationsViewController alloc]initWithUser:_user andGame:(Game*)[_games objectAtIndex:indexPath.row]];
+        
+        [self.navigationController pushViewController:n animated:YES];
     } else {
         NSLog(@"Selected Judging");
     }

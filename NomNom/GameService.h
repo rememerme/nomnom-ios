@@ -12,6 +12,8 @@
 #import "FriendService.h"
 #import "User.h"
 #import "Round.h"
+#import "Nomination.h"
+#import "PhraseCard.h"
 
 @interface GameService : NSObject
 
@@ -20,5 +22,7 @@
 -(NSArray*) getGameMembersForGameID:(NSString*)game_id andSession:(User*)user;
 -(Round*) getCurrentRoundForGameID:(NSString*)game_id andSession:(User*)user;
 -(Round*) startGameWithGameID:(NSString*)game_id andSession:(User*)user;
+-(Nomination*) nominateWithNomination:(Nomination*)nomination andGame:(Game*)game andSession:(User*)user;
+-(PhraseCard*) getCardWithRound:(Round*)round andSession:(User*)user;
 
 @end
