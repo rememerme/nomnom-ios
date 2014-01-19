@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "User.h"
+#import "FriendRequest.h"
+#import "FriendService.h"
+#import "GameRequest.h"
 
 @interface RequestService : NSObject
 
--(NSArray*)getFriendRequestsOfUserID:(User*)_user;
--(NSArray*)getGameRequestsOfUserID:(User*)_user;
+-(NSArray*)getFriendRequestsOfUserID:(User*)user;
+-(NSArray*)getGameRequestsOfUserID:(User*)user;
 
 @end

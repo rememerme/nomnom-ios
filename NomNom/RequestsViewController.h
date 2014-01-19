@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 #import "RequestService.h"
+#import "FriendRequest.h"
+#import "GameRequest.h"
 
 @interface RequestsViewController : UITableViewController
 

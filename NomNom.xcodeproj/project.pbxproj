@@ -36,6 +36,7 @@
 		9D6CC28C188B0344003DEF4A /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC28B188B0344003DEF4A /* Game.m */; };
 		9D6CC28F188B050B003DEF4A /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC28E188B050B003DEF4A /* HomeViewController.m */; };
 		9D6CC292188B551B003DEF4A /* RequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC291188B551B003DEF4A /* RequestsViewController.m */; };
+		9D6CC295188B6B4B003DEF4A /* GameRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CC294188B6B4B003DEF4A /* GameRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,8 @@
 		9D6CC28E188B050B003DEF4A /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		9D6CC290188B551B003DEF4A /* RequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestsViewController.h; sourceTree = "<group>"; };
 		9D6CC291188B551B003DEF4A /* RequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestsViewController.m; sourceTree = "<group>"; };
+		9D6CC293188B6B4B003DEF4A /* GameRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameRequest.h; sourceTree = "<group>"; };
+		9D6CC294188B6B4B003DEF4A /* GameRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,14 +223,16 @@
 		9D00E7A8188A7A65008F6804 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9D00E7A0188A7A57008F6804 /* User.h */,
-				9D00E7A1188A7A57008F6804 /* User.m */,
 				9D00E7A2188A7A57008F6804 /* Login.h */,
 				9D00E7A3188A7A57008F6804 /* Login.m */,
-				9D00E7AD188A8EE3008F6804 /* FriendRequest.h */,
-				9D00E7AE188A8EE3008F6804 /* FriendRequest.m */,
+				9D00E7A0188A7A57008F6804 /* User.h */,
+				9D00E7A1188A7A57008F6804 /* User.m */,
 				9D00E7B0188A8F1D008F6804 /* Friend.h */,
 				9D00E7B1188A8F1D008F6804 /* Friend.m */,
+				9D00E7AD188A8EE3008F6804 /* FriendRequest.h */,
+				9D00E7AE188A8EE3008F6804 /* FriendRequest.m */,
+				9D6CC293188B6B4B003DEF4A /* GameRequest.h */,
+				9D6CC294188B6B4B003DEF4A /* GameRequest.m */,
 				9D6CC28A188B0344003DEF4A /* Game.h */,
 				9D6CC28B188B0344003DEF4A /* Game.m */,
 			);
@@ -355,6 +360,7 @@
 				9D6CC289188AFB4C003DEF4A /* GameViewController.m in Sources */,
 				9D00E7B2188A8F1D008F6804 /* Friend.m in Sources */,
 				9D6CC28F188B050B003DEF4A /* HomeViewController.m in Sources */,
+				9D6CC295188B6B4B003DEF4A /* GameRequest.m in Sources */,
 				9D00E7A6188A7A57008F6804 /* Login.m in Sources */,
 				9D00E775188A797E008F6804 /* AppDelegate.m in Sources */,
 				9D00E7AF188A8EE3008F6804 /* FriendRequest.m in Sources */,

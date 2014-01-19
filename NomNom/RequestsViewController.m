@@ -26,6 +26,10 @@
 -(id) initWithUser:(User *)user {
     self = [super init];
     _user = user;
+    
+    _friend_requests = [[[RequestService alloc]init] getFriendRequestsOfUserID:_user];
+    _game_requests = [[[RequestService alloc]init] getGameRequestsOfUserID:_user];
+    
     return self;
     
 }
@@ -74,8 +78,8 @@
 
 -(void) refreshRequests:(id)selector {
     RequestService *rs = [[RequestService alloc]init];
-    //_friend_requests = [rs getFriendRequestsOfUserID:_user];
-    //_game_requests = [rs getGameRequestsOfUserID:_user];
+    _friend_requests = [rs getFriendRequestsOfUserID:_user];
+    _game_requests = [rs getGameRequestsOfUserID:_user];
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
     
@@ -92,7 +96,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return (section == 0) ? [_friend_requests count] : [_game_requests count];
+    return (section == 0) ? ([_friend_requests count] > 0 ? [_friend_requests count] : 1) : ([_game_requests count] > 0 ? [_game_requests count] : 1);
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -109,9 +113,20 @@
     }
     
     if (indexPath.section == 0) {
-        
+        if ([_friend_requests count] == 0) {
+            cell.textLabel.text = @"No new Friend Requests";
+        } else {
+            FriendRequest *fr = [_friend_requests objectAtIndex:indexPath.row];
+            cell.textLabel.text = fr.username;
+            cell.detailTextLabel.text = fr.date_created;
+        }
     } else {
-        
+        if ([_game_requests count] == 0) {
+            cell.textLabel.text = @"No new Game Requests";
+        } else {
+            GameRequest *gr = [_game_requests objectAtIndex:indexPath.row];
+            cell.textLabel.text = gr.game_id;
+        }
     }
     // Configure the cell...
     
