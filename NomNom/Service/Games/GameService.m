@@ -230,7 +230,9 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: urlString]];
     
     NSArray *objects = [NSArray arrayWithObjects: game.game_id, nomination.nomination_card_id, nil];
-    NSArray *keys = [NSArray arrayWithObjects:@"game_id",@"nomination_card_id", nil];
+    NSArray *keys = [NSArray arrayWithObjects:@"game_id", @"nomination_card_id", nil];
+    NSLog(@"Objects: %@", objects);
+    NSLog(@"Keys: %@", keys);
     NSDictionary *postDict = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     NSError *requestError = nil;
     NSData *jsonRequest = [NSJSONSerialization dataWithJSONObject:postDict options:NSJSONWritingPrettyPrinted error:&requestError];

@@ -1,0 +1,7 @@
+NomNom.xcodeproj/
+NomNomTests/
+*.DS_Store
+NomNom/Base.lproj/
+NomNom/Images.xcassets/
+NomNom/en.lproj/
+

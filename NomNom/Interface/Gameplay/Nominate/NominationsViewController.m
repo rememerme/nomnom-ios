@@ -81,6 +81,7 @@
         v.layer.borderWidth = 0.5f;
         v.term.text = nom.term;
         v.description.text = nom.description;
+        v.nomination_card_id = nom.nomination_card_id;
         [view addSubview:v];
 
 
