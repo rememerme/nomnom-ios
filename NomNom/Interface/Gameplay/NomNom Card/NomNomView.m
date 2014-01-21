@@ -29,6 +29,8 @@
         // if labelView is not set userInteractionEnabled, you must do so
         [self setUserInteractionEnabled:YES];
         [self addGestureRecognizer:gesture];
+        _game = game;
+        _user = user;
     }
     return self;
 }

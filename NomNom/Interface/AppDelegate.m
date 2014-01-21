@@ -10,7 +10,6 @@
 #import "ViewController.h"
 #import "User.h"
 #import "FriendsViewController.h"
-#import "RootViewController.h"
 #import "GameViewController.h"
 #import "HomeViewController.h"
 
