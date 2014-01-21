@@ -791,8 +791,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NomNom/NomNom-Prefix.pch";
-				INFOPLIST_FILE = "NomNom/NomNom-Info.plist";
+				GCC_PREFIX_HEADER = "NomNom/Resources/NomNom-Prefix.pch";
+				INFOPLIST_FILE = "NomNom/Resources/NomNom-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -802,8 +802,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NomNom/NomNom-Prefix.pch";
-				INFOPLIST_FILE = "NomNom/NomNom-Info.plist";
+				GCC_PREFIX_HEADER = "NomNom/Resources/NomNom-Prefix.pch";
+				INFOPLIST_FILE = "NomNom/Resources/NomNom-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
