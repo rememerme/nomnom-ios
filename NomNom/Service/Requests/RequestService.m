@@ -11,7 +11,7 @@
 @implementation RequestService
 
 -(NSArray*) getFriendRequestsOfUserID:(User *)user {
-    NSString *urlString = [@"http://134.53.148.103:8001/rest/v1/friends/requests/received/?access_token=" stringByAppendingString:user.session_id];
+    NSString *urlString = [@"http://nomnom.rememerme.com:8001/rest/v1/friends/requests/received/?access_token=" stringByAppendingString:user.session_id];
     NSLog(@"%@", urlString);
     
     NSError *requestError = nil;
@@ -50,7 +50,7 @@
 }
 
 -(NSArray*) getGameRequestsOfUserID:(User *)user {
-    NSString *urlString = [@"http://134.53.148.103:8002/rest/v1/games/requests/?access_token=" stringByAppendingString:user.session_id];
+    NSString *urlString = [@"http://nomnom.rememerme.com:8002/rest/v1/games/requests/?access_token=" stringByAppendingString:user.session_id];
     NSLog(@"%@", urlString);
     
     NSError *requestError = nil;
@@ -93,7 +93,7 @@
 }
 
 -(void)removeFriendRequestWithUserID:(NSString*)user_id andSession:(NSString*)session_id {
-    NSString *urlString = [@"http://134.53.148.103:8001/rest/v1/friends/requests/received/" stringByAppendingString:user_id];
+    NSString *urlString = [@"http://nomnom.rememerme.com:8001/rest/v1/friends/requests/received/" stringByAppendingString:user_id];
     urlString = [urlString stringByAppendingString:@"?access_token="];
     urlString = [urlString stringByAppendingString:session_id];
     NSLog(@"%@", urlString);
@@ -117,7 +117,7 @@
 }
 
 -(void) confirmFriendRequestWithUserID:(NSString *)user_id andSession:(NSString *)session_id {
-    NSString *urlString = [@"http://134.53.148.103:8001/rest/v1/friends/requests/received/" stringByAppendingString:user_id];
+    NSString *urlString = [@"http://nomnom.rememerme.com:8001/rest/v1/friends/requests/received/" stringByAppendingString:user_id];
     urlString = [urlString stringByAppendingString:@"?access_token="];
     urlString = [urlString stringByAppendingString:session_id];
     NSLog(@"%@", urlString);
@@ -142,7 +142,7 @@
 }
 
 -(void)confirmGameRequestWithGame:(GameRequest *)game andSession:(NSString *)session_id {
-    NSString *urlString = [@"http://134.53.148.103:8002/rest/v1/games/" stringByAppendingString:game.game_id];
+    NSString *urlString = [@"http://nomnom.rememerme.com:8002/rest/v1/games/" stringByAppendingString:game.game_id];
     urlString = [urlString stringByAppendingString:@"/members/?access_token="];
     urlString = [urlString stringByAppendingString:session_id];
     NSLog(@"%@", urlString);

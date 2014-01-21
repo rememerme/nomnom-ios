@@ -11,7 +11,7 @@
 @implementation GameService
 
 -(NSArray*) getGamesWithSession:(NSString *)session_id {
-    NSString *urlString = [@"http://134.53.148.103:8002/rest/v1/games/?access_token=" stringByAppendingString:session_id];
+    NSString *urlString = [@"http://nomnom.rememerme.com:8002/rest/v1/games/?access_token=" stringByAppendingString:session_id];
     NSLog(@"%@", urlString);
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: urlString]];
     [request setHTTPMethod:@"GET"];
@@ -53,7 +53,7 @@
 }
 
 -(void) createGameWithMembers:(NSArray *)members andWinningScore:(NSInteger *)score andSession:(NSString *)session_id {
-    NSString *urlString = [@"http://134.53.148.103:8002/rest/v1/games/?access_token=" stringByAppendingString:session_id];
+    NSString *urlString = [@"http://nomnom.rememerme.com:8002/rest/v1/games/?access_token=" stringByAppendingString:session_id];
     NSLog(@"%@", urlString);
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: urlString]];
     NSMutableArray *arr = [[NSMutableArray alloc] init];
@@ -89,7 +89,7 @@
     }
 }
 -(NSArray*) getGameMembersForGameID:(NSString *)game_id andSession:(User*)user {
-    NSString *urlString = [@"http://134.53.148.103:8002/rest/v1/games/" stringByAppendingString:game_id];
+    NSString *urlString = [@"http://nomnom.rememerme.com:8002/rest/v1/games/" stringByAppendingString:game_id];
     urlString = [urlString stringByAppendingString:@"/members/?access_token="];
     urlString = [urlString stringByAppendingString:user.session_id];
     NSLog(@"%@", urlString);
@@ -138,7 +138,7 @@
 // returns {round_id, selector_id, selection_id, phrase_card_id, game_id, date_created, last_modified}
 
 -(Round*) getCurrentRoundForGameID:(NSString *)game_id andSession:(User *)user {
-    NSString *urlString = [@"http://134.53.148.103:8002/rest/v1/games/" stringByAppendingString:game_id];
+    NSString *urlString = [@"http://nomnom.rememerme.com:8002/rest/v1/games/" stringByAppendingString:game_id];
     urlString = [urlString stringByAppendingString:@"/rounds/current/?access_token="];
     urlString = [urlString stringByAppendingString:user.session_id];
     NSLog(@"%@", urlString);
@@ -177,7 +177,7 @@
 -(Round*) startGameWithGameID:(NSString *)game_id andSession:(User *)user {
     // games/<game_id>/rounds/ POST
     // deck_id = 13713f98-810b-11e3-8eca-fa163e50388f
-    NSString *urlString = [@"http://134.53.148.103:8002/rest/v1/games/" stringByAppendingString:game_id];
+    NSString *urlString = [@"http://nomnom.rememerme.com:8002/rest/v1/games/" stringByAppendingString:game_id];
     urlString = [urlString stringByAppendingString:@"/rounds/?access_token="];
     urlString = [urlString stringByAppendingString:user.session_id];
     NSLog(@"%@", urlString);
@@ -223,7 +223,7 @@
 }
 
 -(NominationCard*) nominateWithNomination:(NominationCard *)nomination andGame:(Game*)game andSession:(User *)user {
-    NSString *urlString = [@"http://134.53.148.103:8002/rest/v1/games/" stringByAppendingString:game.game_id];
+    NSString *urlString = [@"http://nomnom.rememerme.com:8002/rest/v1/games/" stringByAppendingString:game.game_id];
     urlString = [urlString stringByAppendingString:@"/rounds/nominations/?access_token="];
     urlString = [urlString stringByAppendingString:user.session_id];
     NSLog(@"%@", urlString);
@@ -264,7 +264,7 @@
 }
 
 -(PhraseCard*) getCardWithRound:(Round*)round andSession:(User *)user {
-    NSString *urlString = [@"http://134.53.148.103:8002/rest/v1/cards/" stringByAppendingString:round.phrase_card_id];
+    NSString *urlString = [@"http://nomnom.rememerme.com:8002/rest/v1/cards/" stringByAppendingString:round.phrase_card_id];
     urlString = [urlString stringByAppendingString:@"?access_token=" ];
     urlString = [urlString stringByAppendingString:user.session_id];
     NSLog(@"%@", urlString);

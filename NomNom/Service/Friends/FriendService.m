@@ -11,7 +11,7 @@
 @implementation FriendService
 
 -(NSArray*)getFriendsOfUserID:(User *)user {
-    NSString *urlString = [@"http://134.53.148.103:8001/rest/v1/friends/?access_token=" stringByAppendingString:user.session_id];
+    NSString *urlString = [@"http://nomnom.rememerme.com:8001/rest/v1/friends/?access_token=" stringByAppendingString:user.session_id];
     NSLog(@"%@", urlString);
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: urlString]];
     [request setHTTPMethod:@"GET"];
@@ -48,7 +48,7 @@
 }
 
 -(Friend*) getFriendWithUserID:(NSString *)user_id andSession:(NSString *)session_id {
-    NSString *urlString = [@"http://134.53.148.103/rest/v1/users/" stringByAppendingString:user_id];
+    NSString *urlString = [@"http://nomnom.rememerme.com/rest/v1/users/" stringByAppendingString:user_id];
     urlString = [urlString stringByAppendingString:@"?access_token="];
     urlString = [urlString stringByAppendingString:session_id];
     NSLog(@"%@", urlString);
@@ -86,7 +86,7 @@
 }
 
 -(void) removeFriendWithUserID:(NSString *)user_id andSession:(NSString *)session_id {
-    NSString *urlString = [@"http://134.53.148.103:8001/rest/v1/friends/" stringByAppendingString:user_id];
+    NSString *urlString = [@"http://nomnom.rememerme.com:8001/rest/v1/friends/" stringByAppendingString:user_id];
     urlString = [urlString stringByAppendingString:@"?access_token="];
     urlString = [urlString stringByAppendingString:session_id];
     NSLog(@"%@", urlString);
@@ -112,7 +112,7 @@
 }
 
 -(void) sendFriendRequestWithUserID:(NSString *)user_id andSession:(NSString *)session_id {
-    NSString *urlString = [@"http://134.53.148.103:8001/rest/v1/friends/requests/?access_token=" stringByAppendingString:session_id];
+    NSString *urlString = [@"http://nomnom.rememerme.com:8001/rest/v1/friends/requests/?access_token=" stringByAppendingString:session_id];
     NSLog(@"%@", urlString);
     
     // make request body

@@ -11,7 +11,7 @@
 @implementation UserService
 
 -(User *) loginUserWithCredentials:(Login *)creds {
-    NSString *urlString = @"http://134.53.148.103:8000/rest/v1/sessions/";
+    NSString *urlString = @"http://nomnom.rememerme.com:8000/rest/v1/sessions/";
     NSLog(@"%@", urlString);
     // make request body
     
@@ -60,7 +60,7 @@
 }
 
 -(NSArray*) getUserWithUsername:(NSString*)username andSession:(NSString *)session_id {
-    NSString *urlString = [@"http://134.53.148.103/rest/v1/users/?username=" stringByAppendingString:username];
+    NSString *urlString = [@"http://nomnom.rememerme.com/rest/v1/users/?username=" stringByAppendingString:username];
     urlString = [urlString stringByAppendingString:@"&access_token="];
     urlString = [urlString stringByAppendingString:session_id];
     NSLog(@"%@", urlString);
